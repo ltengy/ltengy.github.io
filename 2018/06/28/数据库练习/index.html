@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>SQL 45道经典练习 | 我的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言最近学了SQL，但对查询等操作还是不熟练，于是网上找了一套题目自己做，从实际操纵中一点一点学习sql的语句，相信大家耐心做完题后，会和我一样对sql有一个新的领悟">
+<meta name="keywords" content="github,SQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL 45道经典练习">
+<meta property="og:url" content="https://ltengy.github.io/2018/06/28/数据库练习/index.html">
+<meta property="og:site_name" content="我的博客">
+<meta property="og:description" content="前言最近学了SQL，但对查询等操作还是不熟练，于是网上找了一套题目自己做，从实际操纵中一点一点学习sql的语句，相信大家耐心做完题后，会和我一样对sql有一个新的领悟">
+<meta property="og:locale" content="zh-Fans">
+<meta property="og:updated_time" content="2018-08-06T01:01:04.496Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQL 45道经典练习">
+<meta name="twitter:description" content="前言最近学了SQL，但对查询等操作还是不熟练，于是网上找了一套题目自己做，从实际操纵中一点一点学习sql的语句，相信大家耐心做完题后，会和我一样对sql有一个新的领悟">
+  
+    <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">Ltengy</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">一天进步一点</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder=" Search...">
+            </form>
+			<div id="local-search-result"></div>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=0efg5ebp4OXh5JGgoP_yvrw" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/ltengy" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="#" title="weibo">weibo</a>
+                            
+                                <a class="fl google" target="_blank" href="#" title="google">google</a>
+                            
+                                <a class="fl twitter" target="_blank" href="#" title="twitter">twitter</a>
+                            
+                                <a class="fl linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/ReadMore/" style="font-size: 10px;">ReadMore</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/ccs811/" style="font-size: 10px;">ccs811</a> <a href="/tags/github/" style="font-size: 20px;">github</a> <a href="/tags/githubdesk/" style="font-size: 10px;">githubdesk</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/servlet/" style="font-size: 20px;">servlet</a> <a href="/tags/spfk/" style="font-size: 10px;">spfk</a> <a href="/tags/stm32/" style="font-size: 10px;">stm32</a> <a href="/tags/stm32f103/" style="font-size: 10px;">stm32f103</a> <a href="/tags/自定义标签库/" style="font-size: 10px;">自定义标签库</a> <a href="/tags/路径错误/" style="font-size: 10px;">路径错误</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://ltengy.github.io/">github</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">爱逻辑，爱代码，爱尝试新鲜的事物</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">Ltengy</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">Ltengy</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">一天进步一点</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=0efg5ebp4OXh5JGgoP_yvrw" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/ltengy" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+                    
+                        <a class="google" target="_blank" href="#" title="google">google</a>
+                    
+                        <a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
+                    
+                        <a class="linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-数据库练习" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/06/28/数据库练习/" class="article-date">
+      <time datetime="2018-06-28T04:18:14.000Z" itemprop="datePublished">2018-06-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SQL 45道经典练习
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL/">SQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		
+			
+		
+		
+		<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近学了SQL，但对查询等操作还是不熟练，于是网上找了一套题目自己做，从实际操纵中一点一点学习sql的语句，相信大家耐心做完题后，会和我一样对sql有一个新的领悟<br><a id="more"></a></p>
+<h1 id="一：准备工作"><a href="#一：准备工作" class="headerlink" title="一：准备工作"></a>一：准备工作</h1><p>准备建库<br>下面是建库代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE students</span><br><span class="line">(sno VARCHAR(3) NOT NULL, </span><br><span class="line">sname VARCHAR(4) NOT NULL,</span><br><span class="line">ssex VARCHAR(2) NOT NULL, </span><br><span class="line">sbirthday DATETIME,</span><br><span class="line">class VARCHAR(5))</span><br><span class="line"></span><br><span class="line">CREATE TABLE courses</span><br><span class="line">(cno VARCHAR(5) NOT NULL, </span><br><span class="line">cname VARCHAR(10) NOT NULL, </span><br><span class="line">tno VARCHAR(10) NOT NULL)</span><br><span class="line"></span><br><span class="line">CREATE TABLE scores </span><br><span class="line">(sno VARCHAR(3) NOT NULL, </span><br><span class="line">cno VARCHAR(5) NOT NULL, </span><br><span class="line">degree NUMERIC(10, 1) NOT NULL) </span><br><span class="line"></span><br><span class="line">CREATE TABLE teachers </span><br><span class="line">(tno VARCHAR(3) NOT NULL, </span><br><span class="line">tname VARCHAR(4) NOT NULL, tsex VARCHAR(2) NOT NULL, </span><br><span class="line">tbirthday DATETIME NOT NULL, prof VARCHAR(6), </span><br><span class="line">depart VARCHAR(10) NOT NULL)</span><br></pre></td></tr></table></figure></p>
+<p>插入数据代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO STUDENTS (SNO,SNAME,SSEX,SBIRTHDAY,CLASS) VALUES (108 ,<span class="string">'曾华'</span> ,<span class="string">'男'</span> ,<span class="string">'1977-09-01'</span>,95033);</span><br><span class="line">INSERT INTO STUDENTS (SNO,SNAME,SSEX,SBIRTHDAY,CLASS) VALUES (105 ,<span class="string">'匡明'</span> ,<span class="string">'男'</span> ,<span class="string">'1975-10-02'</span>,95031);</span><br><span class="line">INSERT INTO STUDENTS (SNO,SNAME,SSEX,SBIRTHDAY,CLASS) VALUES (107 ,<span class="string">'王丽'</span> ,<span class="string">'女'</span> ,<span class="string">'1976-01-23'</span>,95033);</span><br><span class="line">INSERT INTO STUDENTS (SNO,SNAME,SSEX,SBIRTHDAY,CLASS) VALUES (101 ,<span class="string">'李军'</span> ,<span class="string">'男'</span> ,<span class="string">'1976-02-20'</span>,95033);</span><br><span class="line">INSERT INTO STUDENTS (SNO,SNAME,SSEX,SBIRTHDAY,CLASS) VALUES (109 ,<span class="string">'王芳'</span> ,<span class="string">'女'</span> ,<span class="string">'1975-02-10'</span>,95031);</span><br><span class="line">INSERT INTO STUDENTS (SNO,SNAME,SSEX,SBIRTHDAY,CLASS) VALUES (103 ,<span class="string">'陆君'</span> ,<span class="string">'男'</span> ,<span class="string">'1974-06-03'</span>,95031);</span><br><span class="line"></span><br><span class="line">INSERT INTO COURSES(CNO,CNAME,TNO)VALUES (<span class="string">'3-105'</span> ,<span class="string">'计算机导论'</span>,825);</span><br><span class="line">INSERT INTO COURSES(CNO,CNAME,TNO)VALUES (<span class="string">'3-245'</span> ,<span class="string">'操作系统'</span> ,804);</span><br><span class="line">INSERT INTO COURSES(CNO,CNAME,TNO)VALUES (<span class="string">'6-166'</span> ,<span class="string">'数据电路'</span> ,856);</span><br><span class="line">INSERT INTO COURSES(CNO,CNAME,TNO)VALUES (<span class="string">'9-888'</span> ,<span class="string">'高等数学'</span> ,100);</span><br><span class="line"></span><br><span class="line">INSERT INTO SCORES(SNO,CNO,DEGREE)VALUES (103,<span class="string">'3-245'</span>,86);</span><br><span class="line">INSERT INTO SCORES(SNO,CNO,DEGREE)VALUES (105,<span class="string">'3-245'</span>,75);</span><br><span class="line">INSERT INTO SCORES(SNO,CNO,DEGREE)VALUES (109,<span class="string">'3-245'</span>,68);</span><br><span class="line">INSERT INTO SCORES(SNO,CNO,DEGREE)VALUES (103,<span class="string">'3-105'</span>,92);</span><br><span class="line">INSERT INTO SCORES(SNO,CNO,DEGREE)VALUES (105,<span class="string">'3-105'</span>,88);</span><br><span class="line">INSERT INTO SCORES(SNO,CNO,DEGREE)VALUES (109,<span class="string">'3-105'</span>,76);</span><br><span class="line">INSERT INTO SCORES(SNO,CNO,DEGREE)VALUES (101,<span class="string">'3-105'</span>,64);</span><br><span class="line">INSERT INTO SCORES(SNO,CNO,DEGREE)VALUES (107,<span class="string">'3-105'</span>,91);</span><br><span class="line">INSERT INTO SCORES(SNO,CNO,DEGREE)VALUES (108,<span class="string">'3-105'</span>,78);</span><br><span class="line">INSERT INTO SCORES(SNO,CNO,DEGREE)VALUES (101,<span class="string">'6-166'</span>,85);</span><br><span class="line">INSERT INTO SCORES(SNO,CNO,DEGREE)VALUES (107,<span class="string">'6-106'</span>,79);</span><br><span class="line">INSERT INTO SCORES(SNO,CNO,DEGREE)VALUES (108,<span class="string">'6-166'</span>,81);</span><br><span class="line"></span><br><span class="line">INSERT INTO TEACHERS(TNO,TNAME,TSEX,TBIRTHDAY,PROF,DEPART) VALUES (804,<span class="string">'李诚'</span>,<span class="string">'男'</span>,<span class="string">'1958-12-02'</span>,<span class="string">'副教授'</span>,<span class="string">'计算机系'</span>);</span><br><span class="line">INSERT INTO TEACHERS(TNO,TNAME,TSEX,TBIRTHDAY,PROF,DEPART) VALUES (856,<span class="string">'张旭'</span>,<span class="string">'男'</span>,<span class="string">'1969-03-12'</span>,<span class="string">'讲师'</span>,<span class="string">'电子工程系'</span>);</span><br><span class="line">INSERT INTO TEACHERS(TNO,TNAME,TSEX,TBIRTHDAY,PROF,DEPART) VALUES (825,<span class="string">'王萍'</span>,<span class="string">'女'</span>,<span class="string">'1972-05-05'</span>,<span class="string">'助教'</span>,<span class="string">'计算机系'</span>);</span><br><span class="line">INSERT INTO TEACHERS(TNO,TNAME,TSEX,TBIRTHDAY,PROF,DEPART) VALUES (831,<span class="string">'刘冰'</span>,<span class="string">'女'</span>,<span class="string">'1977-08-14'</span>,<span class="string">'助教'</span>,<span class="string">'电子工程系'</span>);</span><br></pre></td></tr></table></figure></p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">1、 查询Student表中的所有记录的Sname、Ssex和Class列。</span><br><span class="line">2、 查询教师所有的单位即不重复的Depart列。</span><br><span class="line">3、 查询Student表的所有记录。</span><br><span class="line">4、 查询Score表中成绩在60到80之间的所有记录。</span><br><span class="line">5、 查询Score表中成绩为85，86或88的记录。</span><br><span class="line">6、 查询Student表中“95031”班或性别为“女”的同学记录。</span><br><span class="line">7、 以Class降序查询Student表的所有记录。</span><br><span class="line">8、 以Cno升序、Degree降序查询Score表的所有记录。</span><br><span class="line">9、 查询“95031”班的学生人数。</span><br><span class="line">10、查询Score表中的最高分的学生学号和课程号。</span><br><span class="line">11、查询‘3-105’号课程的平均分。</span><br><span class="line">12、查询Score表中至少有5名学生选修的并以3开头的课程的平均分数。</span><br><span class="line">13、查询最低分大于70，最高分小于90的Sno列。</span><br><span class="line">14、查询所有学生的Sname、Cno和Degree列。</span><br><span class="line">15、查询所有学生的Sno、Cname和Degree列。</span><br><span class="line">16、查询所有学生的Sname、Cname和Degree列。</span><br><span class="line">17、查询“95033”班所选课程的平均分。</span><br><span class="line">18、假设使用如下命令建立了一个grade表：</span><br><span class="line">create table grade(low   number(3,0),upp   number(3),rank   char(1));</span><br><span class="line">insert into grade values(90,100,’A’);</span><br><span class="line">insert into grade values(80,89,’B’);</span><br><span class="line">insert into grade values(70,79,’C’);</span><br><span class="line">insert into grade values(60,69,’D’);</span><br><span class="line">insert into grade values(0,59,’E’);</span><br><span class="line">commit;</span><br><span class="line">现查询所有同学的Sno、Cno和rank列。</span><br><span class="line">19、查询选修“3-105”课程的成绩高于“109”号同学成绩的所有同学的记录。</span><br><span class="line">20、查询score中选学一门以上课程的同学中分数为非最高分成绩的记录。</span><br><span class="line">21、查询成绩高于学号为“109”、课程号为“3-105”的成绩的所有记录。</span><br><span class="line">22、查询和学号为108的同学同年出生的所有学生的Sno、Sname和Sbirthday列。</span><br><span class="line">23、查询“张旭“教师任课的学生成绩。</span><br><span class="line">24、查询选修某课程的同学人数多于5人的教师姓名。</span><br><span class="line">25、查询95033班和95031班全体学生的记录。</span><br><span class="line">26、查询存在有85分以上成绩的课程Cno.</span><br><span class="line">27、查询出“计算机系“教师所教课程的成绩表。</span><br><span class="line">28、查询“计算机系”与“电子工程系“不同职称的教师的Tname和Prof。</span><br><span class="line">29、查询选修编号为“3-105“课程且成绩至少高于选修编号为“3-245”的同学的Cno、Sno和Degree,并按Degree从高到低次序排序。</span><br><span class="line">30、查询选修编号为“3-105”且成绩高于选修编号为“3-245”课程的同学的Cno、Sno和Degree.</span><br><span class="line">31、查询所有教师和同学的name、sex和birthday.</span><br><span class="line">32、查询所有“女”教师和“女”同学的name、sex和birthday.</span><br><span class="line">33、查询成绩比该课程平均成绩低的同学的成绩表。</span><br><span class="line">34、查询所有任课教师的Tname和Depart.</span><br><span class="line">35  查询所有未讲课的教师的Tname和Depart. </span><br><span class="line">36、查询至少有2名男生的班号。</span><br><span class="line">37、查询Student表中不姓“王”的同学记录。</span><br><span class="line">38、查询Student表中每个学生的姓名和年龄。</span><br><span class="line">39、查询Student表中最大和最小的Sbirthday日期值。</span><br><span class="line">40、以班号和年龄从大到小的顺序查询Student表中的全部记录。</span><br><span class="line">41、查询“男”教师及其所上的课程。</span><br><span class="line">42、查询最高分同学的Sno、Cno和Degree列。</span><br><span class="line">43、查询和“李军”同性别的所有同学的Sname.</span><br><span class="line">44、查询和“李军”同性别并同班的同学Sname.</span><br><span class="line">45、查询所有选修“计算机导论”课程的“男”同学的成绩表</span><br></pre></td></tr></table></figure>
+<h1 id="部分参考答案"><a href="#部分参考答案" class="headerlink" title="部分参考答案"></a>部分参考答案</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br></pre></td><td class="code"><pre><span class="line">1、 查询Student表中的所有记录的Sname、Ssex和Class列。</span><br><span class="line">select Sname,Ssex,Class from students</span><br><span class="line">2、 查询教师所有的单位即不重复的Depart列。</span><br><span class="line">select distinct Depart from teachers </span><br><span class="line">3、 查询Student表的所有记录。</span><br><span class="line">select *from students</span><br><span class="line">4、 查询Score表中成绩在60到80之间的所有记录。</span><br><span class="line">select *from scores <span class="built_in">where</span> degree&gt;=60 and degree&lt;=80</span><br><span class="line">5、 查询Score表中成绩为85，86或88的记录。</span><br><span class="line">select *from scores <span class="built_in">where</span> degree=85 or degree=86 or degree=88</span><br><span class="line">6、 查询Student表中“95031”班或性别为“女”的同学记录。</span><br><span class="line">select *from students <span class="built_in">where</span> class=<span class="string">'95031'</span> or ssex=<span class="string">'女'</span></span><br><span class="line">7、 以Class降序查询Student表的所有记录。</span><br><span class="line">select *from students order by class desc</span><br><span class="line">8、 以Cno升序、Degree降序查询Score表的所有记录。</span><br><span class="line">select *from scores order by cno asc, degree desc</span><br><span class="line">9、 查询“95031”班的学生人数。</span><br><span class="line">select count(distinct sno) from students <span class="built_in">where</span> class=<span class="string">'95031'</span></span><br><span class="line">10、查询Score表中的最高分的学生学号和课程号。</span><br><span class="line">select sno,cno from scores <span class="built_in">where</span> </span><br><span class="line">degree=(select max(degree)  from scores)</span><br><span class="line">11、查询<span class="string">'3-105'</span>号课程的平均分。</span><br><span class="line">select avg(degree) from scores <span class="built_in">where</span> cno=<span class="string">'3-105'</span></span><br><span class="line">12、查询Score表中至少有5名学生选修的并以3开头的课程的平均分数。</span><br><span class="line">select avg(degree) from scores <span class="built_in">where</span> </span><br><span class="line">cno= (select cno from scores group by cno </span><br><span class="line">having cno like <span class="string">'3%'</span> and count(*)&gt;5 )</span><br><span class="line"></span><br><span class="line">13、查询最低分大于70，最高分小于90的Sno列。</span><br><span class="line"></span><br><span class="line">select sno from scores group by sno having </span><br><span class="line">min(degree) &gt;70 and max(degree) &lt;90</span><br><span class="line">14、查询所有学生的Sname、Cno和Degree列。</span><br><span class="line">select sname,cno,degree from students ,scores</span><br><span class="line"><span class="built_in">where</span> students.sno=scores.sno</span><br><span class="line">15、查询所有学生的Sno、Cname和Degree列。</span><br><span class="line">select students.sno,cname,degree from students ,courses,scores</span><br><span class="line"><span class="built_in">where</span> students.sno=scores.sno and scores.cno=courses.cno</span><br><span class="line"></span><br><span class="line">16、查询所有学生的Sname、Cname和Degree列。</span><br><span class="line">select Sname,cname,degree from students ,courses,scores</span><br><span class="line"><span class="built_in">where</span> students.sno=scores.sno and scores.cno=courses.cno</span><br><span class="line">17、查询“95033”班所选课程的平均分。</span><br><span class="line">select avg(degree) from scores <span class="built_in">where</span> </span><br><span class="line">sno <span class="keyword">in</span> (select sno from students <span class="built_in">where</span> class=<span class="string">'95033'</span>)</span><br><span class="line">18、假设使用如下命令建立了一个grade表：</span><br><span class="line">create table grade(low <span class="built_in">float</span>(3),upp   <span class="built_in">float</span>(3), rank char(1));</span><br><span class="line">insert into grade values(90,100,<span class="string">'A'</span>);</span><br><span class="line">insert into grade values(80,89,<span class="string">'B'</span>);</span><br><span class="line">insert into grade values(70,79,<span class="string">'C'</span>);</span><br><span class="line">insert into grade values(60,69,<span class="string">'D'</span>);</span><br><span class="line">insert into grade values(0,59,<span class="string">'E'</span>);</span><br><span class="line">commit;</span><br><span class="line">现查询所有同学的Sno、Cno和rank列。</span><br><span class="line">select sno,cno,grade.rank from scores,grade</span><br><span class="line"><span class="built_in">where</span> degree  between low and upp </span><br><span class="line"></span><br><span class="line">19、查询选修“3-105”课程的成绩高于“109”号同学成绩的所有同学的记录。</span><br><span class="line">select *from students <span class="built_in">where</span> sno <span class="keyword">in</span></span><br><span class="line">(select sno from scores <span class="built_in">where</span>  cno=<span class="string">'3-105'</span> and  </span><br><span class="line">degree&gt;(select scores.degree from scores </span><br><span class="line"><span class="built_in">where</span> sno=<span class="string">'109'</span> and cno=<span class="string">'3-105'</span>))</span><br><span class="line">20、查询score中选学一门以上课程的同学中分数为非最高分成绩的记录。</span><br><span class="line">select * from scores a <span class="built_in">where</span> a.degree != (</span><br><span class="line">select MAX(degree) from scores b group by sno having </span><br><span class="line">COUNT (b.cno)&gt;1 and a.sno=b.sno)</span><br><span class="line">select * from scores order by sno </span><br><span class="line"></span><br><span class="line">21、查询成绩高于学号为“109”、课程号为“3-105”的成绩的所有记录。</span><br><span class="line">select * from scores <span class="built_in">where</span>  cno=<span class="string">'3-105'</span> and  </span><br><span class="line">degree&gt;(select scores.degree from scores </span><br><span class="line"><span class="built_in">where</span> sno=<span class="string">'109'</span> and cno=<span class="string">'3-105'</span>)</span><br><span class="line">22、查询和学号为108的同学同年出生的所有学生的Sno、Sname和Sbirthday列。</span><br><span class="line">SELECT s1.Sno,s1.Sname,s1.Sbirthday</span><br><span class="line">FROM Students AS s1 INNER JOIN Students AS s2</span><br><span class="line">ON(YEAR(s1.Sbirthday)=YEAR(s2.Sbirthday))</span><br><span class="line">WHERE s2.Sno=<span class="string">'108'</span>;</span><br><span class="line">23、查询“张旭“教师任课的学生成绩。</span><br><span class="line">select sno,degree from scores <span class="built_in">where</span> cno = </span><br><span class="line">(select cno from courses <span class="built_in">where</span> tno =</span><br><span class="line">(select tno from teachers <span class="built_in">where</span> tname=<span class="string">'张旭'</span>))</span><br><span class="line">24、查询选修某课程的同学人数多于5人的教师姓名。</span><br><span class="line">select tname from teachers <span class="built_in">where</span> tno=(</span><br><span class="line">select tno from courses <span class="built_in">where</span> cno =(</span><br><span class="line">select cno from scores  group by cno having COUNT(sno)&gt;5))</span><br><span class="line">25、查询95033班和95031班全体学生的记录。</span><br><span class="line">select * from students <span class="built_in">where</span> </span><br><span class="line">class=<span class="string">'95033'</span> or class=<span class="string">'95031'</span> order by  class desc</span><br><span class="line">26、查询存在有85分以上成绩的课程Cno.</span><br><span class="line">select cno from scores group by cno having MAX(degree)&gt;85</span><br><span class="line">27、查询出“计算机系“教师所教课程的成绩表。</span><br><span class="line">select * from scores ,teachers,courses <span class="built_in">where</span> </span><br><span class="line">depart=<span class="string">'计算机系'</span> and courses.tno=teachers.tno and</span><br><span class="line">scores.cno=courses.cno</span><br><span class="line"></span><br><span class="line">28、查询“计算机系”与“电子工程系“不同职称的教师的Tname和Prof。</span><br><span class="line">select tname,prof from teachers <span class="built_in">where</span> depart=<span class="string">'计算机系'</span> or depart=<span class="string">'电子工程系'</span></span><br><span class="line">29、查询选修编号为“3-105“课程且成绩至少高于选修编号为“3-245”的同学</span><br><span class="line">的Cno、Sno和Degree,并按Degree从高到低次序排序。</span><br><span class="line">select * from scores a <span class="built_in">where</span> cno=<span class="string">'3-105'</span> and sno <span class="keyword">in</span></span><br><span class="line">(select sno from scores b <span class="built_in">where</span> cno=<span class="string">'3-245'</span> and a.degree&gt;b.degree)</span><br><span class="line"> order by degree desc</span><br><span class="line">30、查询选修编号为“3-105”且成绩高于选修编号为“3-245”课程的同学的Cno、Sno和Degree.</span><br><span class="line"></span><br><span class="line">31、查询所有教师和同学的name、sex和birthday.</span><br><span class="line">select tname as name ,tsex as sex ,tbirthday as birthday </span><br><span class="line">from teachers </span><br><span class="line">union</span><br><span class="line">select sname as name ,ssex as sex ,sbirthday as birthday  </span><br><span class="line">from students</span><br><span class="line">32、查询所有“女”教师和“女”同学的name、sex和birthday.</span><br><span class="line">select tname as name ,tsex as sex ,tbirthday as birthday </span><br><span class="line">from teachers <span class="built_in">where</span> tsex=<span class="string">'女'</span></span><br><span class="line">union</span><br><span class="line">select sname as name ,ssex as sex ,sbirthday as birthday  </span><br><span class="line">from students <span class="built_in">where</span> ssex=<span class="string">'女'</span></span><br><span class="line">33、查询成绩比该课程平均成绩低的同学的成绩表。</span><br><span class="line">select *from scores a <span class="built_in">where</span> a.degree &lt;</span><br><span class="line">(select AVG(degree) from scores b group by cno having b.cno=a.cno) </span><br><span class="line">select AVG(degree)as avg,cno from scores group by cno</span><br><span class="line">34、查询所有任课教师的Tname和Depart.</span><br><span class="line">select tname,depart from teachers <span class="built_in">where</span> tno <span class="keyword">in</span>(</span><br><span class="line">select tno from courses)</span><br><span class="line">35  查询所有未讲课的教师的Tname和Depart. </span><br><span class="line">select tname,depart from teachers <span class="built_in">where</span> tno not <span class="keyword">in</span>(</span><br><span class="line">select tno from courses)</span><br><span class="line">36、查询至少有2名男生的班号。</span><br><span class="line">select class from students group by class having COUNT(ssex)&gt;1</span><br><span class="line">37、查询Student表中不姓“王”的同学记录。</span><br><span class="line">select *from students <span class="built_in">where</span> sname not like <span class="string">'王_'</span></span><br><span class="line">38、查询Student表中每个学生的姓名和年龄。</span><br><span class="line"></span><br><span class="line">39、查询Student表中最大和最小的Sbirthday日期值。</span><br><span class="line">select MAX(sbirthday),MIN(sbirthday) from students </span><br><span class="line">40、以班号和年龄从大到小的顺序查询Student表中的全部记录。</span><br><span class="line">select * from students order by class desc ,sbirthday </span><br><span class="line">41、查询“男”教师及其所上的课程。</span><br><span class="line">select * from courses,teachers <span class="built_in">where</span> tsex=<span class="string">'男'</span> and teachers.tno=courses.tno</span><br><span class="line">42、查询最高分同学的Sno、Cno和Degree列。</span><br><span class="line">select * from scores a <span class="built_in">where</span> a.degree=(</span><br><span class="line">select MAX(b.degree) from scores b group by b.cno having a.cno=b.cno)</span><br><span class="line">43、查询和“李军”同性别的所有同学的Sname.</span><br><span class="line">select sname from students <span class="built_in">where</span> sname!=<span class="string">'李军'</span> and ssex=(</span><br><span class="line">select ssex from students <span class="built_in">where</span> sname=<span class="string">'李军'</span>)</span><br><span class="line">44、查询和“李军”同性别并同班的同学Sname.</span><br><span class="line">select a.sname from students a,students b <span class="built_in">where</span> </span><br><span class="line">b.sname=<span class="string">'李军'</span> and a.ssex=b.ssex and a.class=b.class</span><br><span class="line">45、查询所有选修“计算机导论”课程的“男”同学的成绩表</span><br><span class="line">select scores.* from scores,courses,students <span class="built_in">where</span> </span><br><span class="line">cname=<span class="string">'计算机导论'</span>and courses.cno=scores.cno and </span><br><span class="line">scores.sno =students.sno and students.ssex=<span class="string">'男'</span></span><br></pre></td></tr></table></figure>
+<p>参考网址<a href="https://blog.csdn.net/mrbcy/article/details/68965271" target="_blank" rel="noopener">https://blog.csdn.net/mrbcy/article/details/68965271</a></p>
+
+		
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/06/28/数据库练习/">SQL 45道经典练习</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Ltengy 的个人博客">Ltengy</a></p>
+        <p><span>发布时间:</span>2018年06月28日 - 12时18分</p>
+        <p><span>最后更新:</span>2018年08月06日 - 09时01分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/06/28/数据库练习/" title="SQL 45道经典练习">https://ltengy.github.io/2018/06/28/数据库练习/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://ltengy.github.io/2018/06/28/数据库练习/　　作者: Ltengy" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2018/08/04/ccs811调试指南/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          ccs811调试指南
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/06/01/如何使用github创建自己的博客/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">如何在windows使用github创建自己的博客</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一：准备工作"><span class="toc-number">2.</span> <span class="toc-text">一：准备工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#问题"><span class="toc-number">3.</span> <span class="toc-text">问题:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#部分参考答案"><span class="toc-number">4.</span> <span class="toc-text">部分参考答案</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/08/04/ccs811调试指南/" title="上一篇: ccs811调试指南">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/06/01/如何使用github创建自己的博客/" title="下一篇: 如何在windows使用github创建自己的博客">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/关于自定义标签库找不到路径的解决办法/">关于自定义标签库找不到路径的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/06/基于spfk主题的自动摘要/">基于spfk主题的自动摘要</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/04/验证码demo/">java实现验证码demo</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/04/ccs811调试指南/">ccs811调试指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/28/数据库练习/">SQL 45道经典练习</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/01/如何使用github创建自己的博客/">如何在windows使用github创建自己的博客</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2018 Ltengy
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >到访人数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 5;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<script src="/js/search.js"></script> 
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+
+	
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+  </div>
+</body>
+</html>

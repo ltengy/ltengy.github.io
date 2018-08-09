@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>java实现验证码demo | 我的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近要做一个网站，要求实现验证码程序，经过不断调试，终于成功实现功能。">
+<meta name="keywords" content="java,servlet,ajax">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java实现验证码demo">
+<meta property="og:url" content="https://ltengy.github.io/2018/08/04/验证码demo/index.html">
+<meta property="og:site_name" content="我的博客">
+<meta property="og:description" content="最近要做一个网站，要求实现验证码程序，经过不断调试，终于成功实现功能。">
+<meta property="og:locale" content="zh-Fans">
+<meta property="og:updated_time" content="2018-08-06T01:02:51.081Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java实现验证码demo">
+<meta name="twitter:description" content="最近要做一个网站，要求实现验证码程序，经过不断调试，终于成功实现功能。">
+  
+    <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">Ltengy</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">一天进步一点</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder=" Search...">
+            </form>
+			<div id="local-search-result"></div>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=0efg5ebp4OXh5JGgoP_yvrw" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/ltengy" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="#" title="weibo">weibo</a>
+                            
+                                <a class="fl google" target="_blank" href="#" title="google">google</a>
+                            
+                                <a class="fl twitter" target="_blank" href="#" title="twitter">twitter</a>
+                            
+                                <a class="fl linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/ReadMore/" style="font-size: 10px;">ReadMore</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/ccs811/" style="font-size: 10px;">ccs811</a> <a href="/tags/github/" style="font-size: 20px;">github</a> <a href="/tags/githubdesk/" style="font-size: 10px;">githubdesk</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/servlet/" style="font-size: 20px;">servlet</a> <a href="/tags/spfk/" style="font-size: 10px;">spfk</a> <a href="/tags/stm32/" style="font-size: 10px;">stm32</a> <a href="/tags/stm32f103/" style="font-size: 10px;">stm32f103</a> <a href="/tags/自定义标签库/" style="font-size: 10px;">自定义标签库</a> <a href="/tags/路径错误/" style="font-size: 10px;">路径错误</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://ltengy.github.io/">github</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">爱逻辑，爱代码，爱尝试新鲜的事物</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">Ltengy</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">Ltengy</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">一天进步一点</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=0efg5ebp4OXh5JGgoP_yvrw" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/ltengy" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+                    
+                        <a class="google" target="_blank" href="#" title="google">google</a>
+                    
+                        <a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
+                    
+                        <a class="linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-验证码demo" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/08/04/验证码demo/" class="article-date">
+      <time datetime="2018-08-04T01:46:57.000Z" itemprop="datePublished">2018-08-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      java实现验证码demo
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ajax/">ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/servlet/">servlet</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		
+			
+		
+		
+		<p>最近要做一个网站，要求实现验证码程序，经过不断调试，终于成功实现功能。<br><a id="more"></a></p>
+<h1 id="一：验证码生成类"><a href="#一：验证码生成类" class="headerlink" title="一：验证码生成类"></a>一：验证码生成类</h1><p>生成验证码的话需要用到java的Graphics类库，画出一个验证码<br>废话不多说，直接上代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line">package verificationCode;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import java.awt.Color;</span><br><span class="line">import java.awt.Font;</span><br><span class="line">import java.awt.Graphics;</span><br><span class="line">import java.awt.image.BufferedImage;</span><br><span class="line">import java.awt.image.RenderedImage;</span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.FileOutputStream;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.OutputStream;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line">import java.util.Random;</span><br><span class="line"></span><br><span class="line">import javax.imageio.ImageIO;</span><br><span class="line"></span><br><span class="line">public class generateCode &#123;</span><br><span class="line">    private static int width = 150;// 定义图片的width</span><br><span class="line">    private static int height = 48;// 定义图片的height</span><br><span class="line">    private static int codeCount = 4;// 定义图片上显示验证码的个数</span><br><span class="line">    private static int xx = 25;</span><br><span class="line">    private static int fontHeight = 42;</span><br><span class="line">    private static  int codeY = 42;</span><br><span class="line">    private static char[] codeSequence = &#123; <span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'E'</span>, <span class="string">'F'</span>, <span class="string">'G'</span>, <span class="string">'H'</span>, <span class="string">'I'</span>, <span class="string">'J'</span>, <span class="string">'K'</span>, <span class="string">'L'</span>, <span class="string">'M'</span>, <span class="string">'N'</span>, <span class="string">'O'</span>, <span class="string">'P'</span>, <span class="string">'Q'</span>, <span class="string">'R'</span>,</span><br><span class="line">            <span class="string">'S'</span>, <span class="string">'T'</span>, <span class="string">'U'</span>, <span class="string">'V'</span>, <span class="string">'W'</span>, <span class="string">'X'</span>, <span class="string">'Y'</span>, <span class="string">'Z'</span>, <span class="string">'0'</span>, <span class="string">'1'</span>, <span class="string">'2'</span>, <span class="string">'3'</span>, <span class="string">'4'</span>, <span class="string">'5'</span>, <span class="string">'6'</span>, <span class="string">'7'</span>, <span class="string">'8'</span>, <span class="string">'9'</span> &#125;;</span><br><span class="line">    </span><br><span class="line">    /**</span><br><span class="line">     * 生成一个map集合</span><br><span class="line">     * code为生成的验证码</span><br><span class="line">     * codePic为生成的验证码BufferedImage对象</span><br><span class="line">     * @<span class="built_in">return</span></span><br><span class="line">     */</span><br><span class="line">    public static Map&lt;String,Object&gt; <span class="function"><span class="title">generateCodeAndPic</span></span>() &#123;</span><br><span class="line">        // 定义图像buffer</span><br><span class="line">        BufferedImage buffImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);</span><br><span class="line">        // Graphics2D gd = buffImg.createGraphics();</span><br><span class="line">        // Graphics2D gd = (Graphics2D) buffImg.getGraphics();</span><br><span class="line">        Graphics gd = buffImg.getGraphics();</span><br><span class="line">        // 创建一个随机数生成器类</span><br><span class="line">        Random random = new Random();</span><br><span class="line">        // 将图像填充为白色</span><br><span class="line">        gd.setColor(Color.WHITE);</span><br><span class="line">        gd.fillRect(0, 0, width, height);</span><br><span class="line"></span><br><span class="line">        // 创建字体，字体的大小应该根据图片的高度来定。</span><br><span class="line">        Font font = new Font(<span class="string">"Fixedsys"</span>, Font.BOLD, fontHeight);</span><br><span class="line">        // 设置字体。</span><br><span class="line">        gd.setFont(font);</span><br><span class="line"></span><br><span class="line">        // 画边框。</span><br><span class="line">        gd.setColor(Color.BLACK);</span><br><span class="line">        gd.drawRect(0, 0, width - 1, height - 1);</span><br><span class="line">        gd.setFont(font);</span><br><span class="line">        // 随机产生40条干扰线，使图象中的认证码不易被其它程序探测到。</span><br><span class="line">        int red = 0, green = 0, blue = 0;</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">        // randomCode用于保存随机产生的验证码，以便用户登录后进行验证。</span><br><span class="line">        StringBuffer randomCode = new StringBuffer();</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">        // 随机产生codeCount数字的验证码。</span><br><span class="line">        <span class="keyword">for</span> (int i = 0; i &lt; codeCount; i++) &#123;</span><br><span class="line">            // 得到随机产生的验证码数字。</span><br><span class="line">            String code = String.valueOf(codeSequence[random.nextInt(36)]);</span><br><span class="line">            // 产生随机的颜色分量来构造颜色值，这样输出的每位数字的颜色值都将不同。</span><br><span class="line">            red = random.nextInt(255);</span><br><span class="line">            green = random.nextInt(255);</span><br><span class="line">            blue = random.nextInt(255);</span><br><span class="line">            // 用随机产生的颜色将验证码绘制到图像中。</span><br><span class="line">            gd.setColor(new Color(red, green, blue));</span><br><span class="line">            gd.drawString(code, (i + 1) * xx, codeY);</span><br><span class="line"></span><br><span class="line">            // 将产生的四个随机数组合在一起。</span><br><span class="line">            randomCode.append(code);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (int i = 0; i &lt; 60; i++) &#123;</span><br><span class="line">        	red = random.nextInt(255);</span><br><span class="line">            green = random.nextInt(255);</span><br><span class="line">            blue = random.nextInt(255);</span><br><span class="line">            // 用随机产生的颜色将验证码绘制到图像中。</span><br><span class="line">            gd.setColor(new Color(red, green, blue));</span><br><span class="line">            int x = random.nextInt(width);</span><br><span class="line">            int y = random.nextInt(height);</span><br><span class="line">            int xl = random.nextInt(50);</span><br><span class="line">            int yl = random.nextInt(50);</span><br><span class="line">            gd.drawLine(x, y, x + xl, y + yl);</span><br><span class="line">        &#125;</span><br><span class="line">        Map&lt;String,Object&gt; map  =new HashMap&lt;String,Object&gt;();</span><br><span class="line">        //存放验证码</span><br><span class="line">        map.put(<span class="string">"code"</span>, randomCode);</span><br><span class="line">        //存放生成的验证码BufferedImage对象</span><br><span class="line">        map.put(<span class="string">"codePic"</span>, buffImg);</span><br><span class="line">        <span class="built_in">return</span> map;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws Exception &#123;</span><br><span class="line">        //创建文件输出流对象</span><br><span class="line">    	File file = new File(<span class="string">"WebRoot/image/"</span>+System.currentTimeMillis()+<span class="string">".jpg"</span>);</span><br><span class="line">        FileOutputStream out = null;</span><br><span class="line">    	try &#123;</span><br><span class="line">            <span class="keyword">if</span> (!file.exists()) &#123;</span><br><span class="line">                // 先得到文件的上级目录，并创建上级目录，在创建文件</span><br><span class="line">                file.getParentFile().mkdir();</span><br><span class="line">                file.createNewFile();</span><br><span class="line">            &#125;</span><br><span class="line">            out = new FileOutputStream(file);</span><br><span class="line">        Map&lt;String,Object&gt; map = generateCode.generateCodeAndPic();</span><br><span class="line">        ImageIO.write((RenderedImage) map.get(<span class="string">"codePic"</span>), <span class="string">"jpeg"</span>, out);</span><br><span class="line">        System.out.println(<span class="string">"验证码的值为："</span>+map.get(<span class="string">"code"</span>));</span><br><span class="line">    	&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="二：验证码验证类"><a href="#二：验证码验证类" class="headerlink" title="二：验证码验证类"></a>二：验证码验证类</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">package verificationCode;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line">import javax.servlet.ServletException;</span><br><span class="line">import javax.servlet.annotation.WebServlet;</span><br><span class="line">import javax.servlet.http.HttpServlet;</span><br><span class="line">import javax.servlet.http.HttpServletRequest;</span><br><span class="line">import javax.servlet.http.HttpServletResponse;</span><br><span class="line">import javax.servlet.http.HttpSession;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@WebServlet(<span class="string">"/checkCode"</span>)</span><br><span class="line">public class checkCode extends HttpServlet &#123;</span><br><span class="line">    private static final long serialVersionUID = 1L;</span><br><span class="line"></span><br><span class="line">    protected void doGet(HttpServletRequest request, HttpServletResponse response)</span><br><span class="line">            throws ServletException, IOException &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    protected void doPost(HttpServletRequest request, HttpServletResponse response)</span><br><span class="line">            throws ServletException, IOException &#123;</span><br><span class="line">        String code = request.getParameter(<span class="string">"code"</span>);</span><br><span class="line">        response.setCharacterEncoding(<span class="string">"utf-8"</span>);//保证格式正确</span><br><span class="line">        response.setContentType(<span class="string">"text/html"</span>);</span><br><span class="line">        // 验证验证码</span><br><span class="line">        String sessionCode = request.getSession().getAttribute(<span class="string">"code"</span>).toString();</span><br><span class="line">        <span class="keyword">if</span> (code != null &amp;&amp; !<span class="string">""</span>.equals(code) &amp;&amp; sessionCode != null &amp;&amp; !<span class="string">""</span>.equals(sessionCode)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (code.equalsIgnoreCase(sessionCode)) &#123;</span><br><span class="line">                response.getWriter().println(<span class="string">"验证通过！"</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                response.getWriter().println(<span class="string">"验证失败！"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            response.getWriter().println(<span class="string">"验证失败！"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="三：验证码传输类"><a href="#三：验证码传输类" class="headerlink" title="三：验证码传输类"></a>三：验证码传输类</h1><p>用到doget方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">package verificationCode;</span><br><span class="line"></span><br><span class="line">import java.awt.Color;</span><br><span class="line">import java.awt.Font;</span><br><span class="line">import java.awt.Graphics;</span><br><span class="line">import java.awt.image.BufferedImage;</span><br><span class="line">import java.awt.image.RenderedImage;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line">import java.util.Random;</span><br><span class="line"></span><br><span class="line">import javax.imageio.ImageIO;</span><br><span class="line">import javax.servlet.ServletException;</span><br><span class="line">import javax.servlet.ServletOutputStream;</span><br><span class="line">import javax.servlet.annotation.WebServlet;</span><br><span class="line">import javax.servlet.http.HttpServlet;</span><br><span class="line">import javax.servlet.http.HttpServletRequest;</span><br><span class="line">import javax.servlet.http.HttpServletResponse;</span><br><span class="line">import javax.servlet.http.HttpSession;</span><br><span class="line"></span><br><span class="line">import verificationCode.generateCode;</span><br><span class="line">/**</span><br><span class="line"> * Servlet implementation class CodeServlet</span><br><span class="line"> */</span><br><span class="line">@WebServlet(<span class="string">"/getCode"</span>)</span><br><span class="line">public class CodeServlet extends HttpServlet &#123;</span><br><span class="line">    private static final long serialVersionUID = 1L;</span><br><span class="line">    </span><br><span class="line">    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &#123;</span><br><span class="line">        // 调用工具类生成的验证码和验证码图片</span><br><span class="line">        Map&lt;String, Object&gt; codeMap = generateCode.generateCodeAndPic();</span><br><span class="line"></span><br><span class="line">        // 将四位数字的验证码保存到Session中。</span><br><span class="line">        HttpSession session = req.getSession();</span><br><span class="line">        session.setAttribute(<span class="string">"code"</span>, codeMap.get(<span class="string">"code"</span>).toString());</span><br><span class="line"></span><br><span class="line">        // 禁止图像缓存。</span><br><span class="line">        resp.setHeader(<span class="string">"Pragma"</span>, <span class="string">"no-cache"</span>);</span><br><span class="line">        resp.setHeader(<span class="string">"Cache-Control"</span>, <span class="string">"no-cache"</span>);</span><br><span class="line">        resp.setDateHeader(<span class="string">"Expires"</span>, 0);</span><br><span class="line"></span><br><span class="line">        resp.setContentType(<span class="string">"image/jpeg"</span>);</span><br><span class="line"></span><br><span class="line">        // 将图像输出到Servlet输出流中。</span><br><span class="line">        ServletOutputStream sos;</span><br><span class="line">        try &#123;</span><br><span class="line">            sos = resp.getOutputStream();</span><br><span class="line">            ImageIO.write((RenderedImage) codeMap.get(<span class="string">"codePic"</span>), <span class="string">"jpeg"</span>, sos);</span><br><span class="line">            sos.close();</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            // TODO Auto-generated catch block</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="四：jsp验证demo"><a href="#四：jsp验证demo" class="headerlink" title="四：jsp验证demo"></a>四：jsp验证demo</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=UTF-8"</span></span><br><span class="line">    pageEncoding=<span class="string">"UTF-8"</span>%&gt;</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv=<span class="string">"Content-Type"</span> content=<span class="string">"text/html; charset=UTF-8"</span>&gt;</span><br><span class="line">&lt;title&gt;验证码页面&lt;/title&gt;</span><br><span class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span></span><br><span class="line">    src=<span class="string">"<span class="variable">$&#123;pageContext.request.contextPath&#125;</span>/js/jquery.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;form action=<span class="string">"<span class="variable">$&#123;pageContext.request.contextPath&#125;</span>/checkCode"</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line">        请输入验证码：&lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"code"</span> style=<span class="string">"width: 80px;"</span> /&gt; &lt;div id=random&gt; &lt;img id=<span class="string">"imgObj"</span> alt=<span class="string">"验证码"</span></span><br><span class="line">            src=<span class="string">"<span class="variable">$&#123;pageContext.request.contextPath&#125;</span>/getCode"</span>&gt; &lt;/div&gt;&lt;button id=<span class="string">"b01"</span> <span class="built_in">type</span>=<span class="string">"button"</span>&gt;改变内容&lt;/button&gt;&lt;br/&gt; &lt;input</span><br><span class="line">            <span class="built_in">type</span>=<span class="string">"submit"</span> value=<span class="string">"提交"</span> /&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">    $(<span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">		//response.getWriter().println(<span class="string">"验证失败！"</span>);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    $(<span class="string">"#b01"</span>).click( <span class="keyword">function</span> <span class="function"><span class="title">changeImg</span></span>() &#123;  </span><br><span class="line">    </span><br><span class="line">    	  </span><br><span class="line">         $(<span class="string">"#random"</span>).html(<span class="string">"&lt;img id='imgObj' alt='验证码' src='<span class="variable">$&#123;pageContext.request.contextPath&#125;</span>/getCode'&gt;"</span>)     </span><br><span class="line">         var imgSrc = $(<span class="string">"#imgObj"</span>);    </span><br><span class="line">        var src = imgSrc.attr(<span class="string">"src"</span>);        </span><br><span class="line">        imgSrc.attr(<span class="string">"src"</span>, chgUrl(src)); </span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    // 时间戳</span><br><span class="line">    // 为了使每次生成图片不一致，即不让浏览器读缓存，所以需要加上时间戳</span><br><span class="line">    <span class="keyword">function</span> chgUrl(url) &#123;</span><br><span class="line">        var timestamp = (new Date()).valueOf();</span><br><span class="line">        url = url.substring(0, 20);</span><br><span class="line">        <span class="keyword">if</span> ((url.indexOf(<span class="string">"&amp;"</span>) &gt;= 0)) &#123;</span><br><span class="line">            url = url + <span class="string">"×tamp="</span> + timestamp;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            url = url + <span class="string">"?timestamp="</span> + timestamp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> url;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>虽然只是一个小小的demo，但是实际上用到了许多知识，比如生成验证码的画图，传输验证码doget，验证验证码的dopost和ajax动态更换验证码，麻雀虽小五脏俱全啊。</p>
+<p>参考网址<a href="https://www.cnblogs.com/nanyangke-cjz/p/7049281.html" target="_blank" rel="noopener">https://www.cnblogs.com/nanyangke-cjz/p/7049281.html</a></p>
+
+		
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/08/04/验证码demo/">java实现验证码demo</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Ltengy 的个人博客">Ltengy</a></p>
+        <p><span>发布时间:</span>2018年08月04日 - 09时46分</p>
+        <p><span>最后更新:</span>2018年08月06日 - 09时02分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/08/04/验证码demo/" title="java实现验证码demo">https://ltengy.github.io/2018/08/04/验证码demo/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://ltengy.github.io/2018/08/04/验证码demo/　　作者: Ltengy" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2018/08/06/基于spfk主题的自动摘要/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          基于spfk主题的自动摘要
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/08/04/ccs811调试指南/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ccs811调试指南</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一：验证码生成类"><span class="toc-number">1.</span> <span class="toc-text">一：验证码生成类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二：验证码验证类"><span class="toc-number">2.</span> <span class="toc-text">二：验证码验证类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三：验证码传输类"><span class="toc-number">3.</span> <span class="toc-text">三：验证码传输类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四：jsp验证demo"><span class="toc-number">4.</span> <span class="toc-text">四：jsp验证demo</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/08/06/基于spfk主题的自动摘要/" title="上一篇: 基于spfk主题的自动摘要">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/08/04/ccs811调试指南/" title="下一篇: ccs811调试指南">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/关于自定义标签库找不到路径的解决办法/">关于自定义标签库找不到路径的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/06/基于spfk主题的自动摘要/">基于spfk主题的自动摘要</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/04/验证码demo/">java实现验证码demo</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/04/ccs811调试指南/">ccs811调试指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/28/数据库练习/">SQL 45道经典练习</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/01/如何使用github创建自己的博客/">如何在windows使用github创建自己的博客</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2018 Ltengy
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >到访人数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 5;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<script src="/js/search.js"></script> 
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+
+	
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+  </div>
+</body>
+</html>
