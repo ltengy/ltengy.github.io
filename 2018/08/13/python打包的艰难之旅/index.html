@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>python打包的艰难之旅 | 我的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前几日，我做了一个简单地划词翻译工具，还挺好用的，但是作为一个python脚本，每次都要打开命令行去执行或者是用spyder太过麻烦了，本来就是想简单简单再简单，所以一心搞事的我又踏上了艰难的python打包之旅。python打包成exe执行文件是挺费劲的，毕竟python本身是没有这个工具的。我用的anaconda也没有这个功能。经过查阅资料，我发现其实python有两个比较好用的打包工具，一个">
+<meta name="keywords" content="python,pyinstaller">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python打包的艰难之旅">
+<meta property="og:url" content="https://ltengy.github.io/2018/08/13/python打包的艰难之旅/index.html">
+<meta property="og:site_name" content="我的博客">
+<meta property="og:description" content="前几日，我做了一个简单地划词翻译工具，还挺好用的，但是作为一个python脚本，每次都要打开命令行去执行或者是用spyder太过麻烦了，本来就是想简单简单再简单，所以一心搞事的我又踏上了艰难的python打包之旅。python打包成exe执行文件是挺费劲的，毕竟python本身是没有这个工具的。我用的anaconda也没有这个功能。经过查阅资料，我发现其实python有两个比较好用的打包工具，一个">
+<meta property="og:locale" content="zh-Fans">
+<meta property="og:image" content="https://ltengy.github.io/images/cmdError.png">
+<meta property="og:image" content="https://ltengy.github.io/images/windowError.png">
+<meta property="og:updated_time" content="2018-08-13T06:54:12.617Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python打包的艰难之旅">
+<meta name="twitter:description" content="前几日，我做了一个简单地划词翻译工具，还挺好用的，但是作为一个python脚本，每次都要打开命令行去执行或者是用spyder太过麻烦了，本来就是想简单简单再简单，所以一心搞事的我又踏上了艰难的python打包之旅。python打包成exe执行文件是挺费劲的，毕竟python本身是没有这个工具的。我用的anaconda也没有这个功能。经过查阅资料，我发现其实python有两个比较好用的打包工具，一个">
+<meta name="twitter:image" content="https://ltengy.github.io/images/cmdError.png">
+  
+    <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">Ltengy</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">一天进步一点</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder=" Search...">
+            </form>
+			<div id="local-search-result"></div>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=0efg5ebp4OXh5JGgoP_yvrw" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/ltengy" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="#" title="weibo">weibo</a>
+                            
+                                <a class="fl google" target="_blank" href="#" title="google">google</a>
+                            
+                                <a class="fl twitter" target="_blank" href="#" title="twitter">twitter</a>
+                            
+                                <a class="fl linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/ReadMore/" style="font-size: 10px;">ReadMore</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/ccs811/" style="font-size: 10px;">ccs811</a> <a href="/tags/github/" style="font-size: 20px;">github</a> <a href="/tags/githubdesk/" style="font-size: 10px;">githubdesk</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/pyinstaller/" style="font-size: 10px;">pyinstaller</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/servlet/" style="font-size: 20px;">servlet</a> <a href="/tags/spfk/" style="font-size: 10px;">spfk</a> <a href="/tags/stm32/" style="font-size: 10px;">stm32</a> <a href="/tags/stm32f103/" style="font-size: 10px;">stm32f103</a> <a href="/tags/划词翻译/" style="font-size: 10px;">划词翻译</a> <a href="/tags/自定义标签库/" style="font-size: 10px;">自定义标签库</a> <a href="/tags/路径错误/" style="font-size: 10px;">路径错误</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://ltengy.github.io/">github</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">爱逻辑，爱代码，爱尝试新鲜的事物</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">Ltengy</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">Ltengy</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">一天进步一点</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=0efg5ebp4OXh5JGgoP_yvrw" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/ltengy" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+                    
+                        <a class="google" target="_blank" href="#" title="google">google</a>
+                    
+                        <a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
+                    
+                        <a class="linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-python打包的艰难之旅" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/08/13/python打包的艰难之旅/" class="article-date">
+      <time datetime="2018-08-13T05:46:54.000Z" itemprop="datePublished">2018-08-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python打包的艰难之旅
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pyinstaller/">pyinstaller</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		
+			
+		
+		
+		<p>前几日，我做了一个简单地划词翻译工具，还挺好用的，但是作为一个python脚本，每次都要打开命令行去执行或者是用spyder太过麻烦了，本来就是想简单简单再简单，所以一心搞事的我又踏上了艰难的python打包之旅。<br>python打包成exe执行文件是挺费劲的，毕竟python本身是没有这个工具的。我用的anaconda也没有这个功能。经过查阅资料，我发现其实python有两个比较好用的打包工具，一个是pyinstaller，一个是py2exe。当时年轻的我还没有意识到，我即将为我的冲动付出时间的代价。</p>
+<h1 id="安装模块"><a href="#安装模块" class="headerlink" title="安装模块"></a>安装模块</h1><ol>
+<li>py2exe<br>因为我用的是python2.7，我一看py2exe名字里带有2，心想没错了，决定就是你了，于是我在命令行界面如狂风骤雨般地敲打出 pip install py2exe，黑色屏幕一阵闪动，跳出血红大字：你的版本太低，看不上你。原来py2exe只能在3.3版本或者更新的版本才能使用。遂放弃<br><img src="/images/cmdError.png" alt=""></li>
+<li>pyinstaller<br>照样是如狂风骤雨般地敲打出pip install pyinstaller，哈哈，一次成功。</li>
+</ol>
+<h1 id="pyinstaller微操指南"><a href="#pyinstaller微操指南" class="headerlink" title="pyinstaller微操指南"></a>pyinstaller微操指南</h1><p>pyinstaller使用方法还挺简单，在命令行界面跳转到自己的脚本目录下，输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller *.py</span><br></pre></td></tr></table></figure></p>
+<p>立马开始工作，很快，命令行显示生成成功。与此同时在此目录下出现了一个build文件夹，打开文件夹，出现以脚本命名的文件夹，点进去，有个exe文件，说时迟那时快，我的鼠标立马就点过去，一个黑框闪过，结果啥也没有？？？<br>正在我百思不得其解时，我发现一个warntemp.txt，点进去。哇，一堆错误——全是missing，pyinstaller这个也是神奇，就算失败了也能给你生成出来，佩服佩服。但是佩服归佩服，怎么解决呢？原来，pyinstaller有个参数-p 文件路径，输入了此路径，就可以解决找不到模块的问题了。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller *.py  -p E:\DevelopTools\Anaconda2\Lib\site-packages</span><br><span class="line"><span class="comment">#我这里模块路径是这个，大家灵活点找到python模块的文件夹</span></span><br></pre></td></tr></table></figure></p>
+<p>重新再来一遍，这一次，黑框闪过，成功运行。<br>pyinstaller 一般有几个参数 ：<br>-w（不带命令行框）<br>-F（一整个文件，单EXE）</p>
+<h1 id="bug总是来得措手不及"><a href="#bug总是来得措手不及" class="headerlink" title="bug总是来得措手不及"></a>bug总是来得措手不及</h1><p>我内心这个激动啊，好，我马上给我的小伙伴发一个，亮瞎他们的狗眼。我开开心心地将它挪到桌面，突然就不行了，<img src="/images/windowError.png" alt=""><br>难道是我的心不灵，还是这个打包器太倔，只能指定位置运行？于是我又给他小心翼翼地放回原来的地方，也还是不行。那我重新生成总可以了吧，它出现在那里，似乎一切都没变过，但是，却他已经不再是他了，他死了，永远的死了。于是我只能动用重启大法，重启之后，一切都是新鲜的模样，什么都是新的，每一个电子都似乎焕发了新的生机。他也随着电子，一起睁开了眼，复制，翻译，是那么的行云流水。我的眼眶不禁开始湿润，我开始思考，究竟是什么，是那隐藏在幽暗电子空穴里涌动的bug，还是那冥冥中的天意，亦或者是我那摇摇欲坠，随风而去的发丝还没离去，让它不满意，发脾气，闹别扭？<br>我踏上了一条寻找答案的道路，我左手谷歌，右手百度，一下去stackoverflow寻经问道，一下去cnds广布英雄帖，走过一道道荒芜的答案，尝试每一种可能的解法，只为我的程序能够让小伙伴的眼亮瞎。这样的我难道就不受世人待见吗，我在黑夜里忍受这血丝遍布的瞳孔带给我的痛楚，我在黎明前悄悄打开我的屏幕享受我的孤独，我一次又一次，失败又失败，可是我，永不动摇。<br>我再一次打开warntemp.txt，里面还是存在着错误，我一个又一个的添加路径，一遍又一遍的输入指令，我感觉我的生命，一点一点归于死寂。</p>
+<h1 id="bug之死"><a href="#bug之死" class="headerlink" title="bug之死"></a>bug之死</h1><p>苍天不负有心人，bug终能死我手。我用cmd打开我移动过的程序，里面赫然说着，有个模块跳出，哈哈，原来如此，原来是我的模块问题<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def getCopyText():</span><br><span class="line">    wc.OpenClipboard()</span><br><span class="line">    copy_text = wc.GetClipboardData(win32con.CF_TEXT)</span><br><span class="line">    copy_text=copy_text.strip().replace(<span class="string">"\r\n"</span>,<span class="string">" "</span>).replace(<span class="string">"\n"</span>,<span class="string">" "</span>).replace(<span class="string">"\r"</span>,<span class="string">" "</span>)</span><br><span class="line">    wc.CloseClipboard()</span><br><span class="line">    <span class="built_in">return</span> copy_text</span><br><span class="line"><span class="comment">#返会是否有新的复制数据</span></span><br></pre></td></tr></table></figure></p>
+<p>乍一看，问题无有，但是由于我们打开了剪切板，而windows的剪切板功能超级强大，它不仅能够复制文字，还能复制文档，程序，当我移动程序的时候，我实际上是将程序复制到了剪切板，此时这个模块就不能正常工作，就会抛出异常，我终于明白了问题所在，我复制一段文字，打开程序，完美运行，nice！<br>bug已死，黄天当立，我也要继续下一段代码的编写。程序附上<br><a href="/download/copyTranster.zip">点击下载</a></p>
+
+		
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/08/13/python打包的艰难之旅/">python打包的艰难之旅</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Ltengy 的个人博客">Ltengy</a></p>
+        <p><span>发布时间:</span>2018年08月13日 - 13时46分</p>
+        <p><span>最后更新:</span>2018年08月13日 - 14时54分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/08/13/python打包的艰难之旅/" title="python打包的艰难之旅">https://ltengy.github.io/2018/08/13/python打包的艰难之旅/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://ltengy.github.io/2018/08/13/python打包的艰难之旅/　　作者: Ltengy" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/11/python实现划词翻译/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">python实现划词翻译</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#安装模块"><span class="toc-number">1.</span> <span class="toc-text">安装模块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pyinstaller微操指南"><span class="toc-number">2.</span> <span class="toc-text">pyinstaller微操指南</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bug总是来得措手不及"><span class="toc-number">3.</span> <span class="toc-text">bug总是来得措手不及</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bug之死"><span class="toc-number">4.</span> <span class="toc-text">bug之死</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/08/11/python实现划词翻译/" title="下一篇: python实现划词翻译">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/08/13/python打包的艰难之旅/">python打包的艰难之旅</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/11/python实现划词翻译/">python实现划词翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/关于自定义标签库找不到路径的解决办法/">关于自定义标签库找不到路径的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/06/基于spfk主题的自动摘要/">基于spfk主题的自动摘要</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/04/验证码demo/">java实现验证码demo</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/04/ccs811调试指南/">ccs811调试指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/28/数据库练习/">SQL 45道经典练习</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/01/如何使用github创建自己的博客/">如何在windows使用github创建自己的博客</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2018 Ltengy
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/ltengy/hexo-theme-dark" target="_blank">dark</a> by ltengy
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >到访人数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 5;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<script src="/js/search.js"></script> 
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+
+	
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+  </div>
+</body>
+</html>
