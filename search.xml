@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[stm32GPIO无法工作原因]]></title>
+    <url>%2F2018%2F08%2F29%2Fstm32GPIO%E6%97%A0%E6%B3%95%E5%B7%A5%E4%BD%9C%E5%8E%9F%E5%9B%A0%2F</url>
+    <content type="text"><![CDATA[最近在调试0.96寸oled时遇见了一个非常奇怪的问题，当我软件模拟spi时某些引脚死活不工作，一开始我以为是我的板子问题，但实际上是stm32对于某些引脚默认有一些操作，导致无法正常的初始化。 stm32默认开启的JTAG模式对于开发者来说，stm32很多引脚都有非常丰富的功能，能让我们开发者进行很多功能的开发，但是正是因为引脚功能太过丰富，说明文档虽然相比其他芯片已经很清晰了，但是依然会忽略某些重要的东西。比如说stm32对于某些脚默认开启了JTAG模式，假如没有显式声明取消JTAG功能，那么关于这些引脚的所有功能初始化都会失败。根据stm32f103的操作手册，PA13，PA14，PA15，PB3，PB4，这几个脚都是默认开启了JTAG模式，所以当我们需要用到这几个脚时，必须声明12RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO ,ENABLE);//重映射需要先使能AFIO时钟GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable,ENABLE);//只关闭JTAG而保留SWD GPIO引脚问题一般来说，碰到GPIO引脚问题，第一步都是检查是否虚焊，假如没有虚焊的话，检查代码配置问题，如果代码配置也没有问题的话，就必须回到操作手册上看引脚定义，看该引脚是否可能存在默认的引脚配置，比如上文提到的JTAG模式。]]></content>
+      <tags>
+        <tag>stm32f103</tag>
+        <tag>GPIO</tag>
+        <tag>Bug</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[python打包的艰难之旅]]></title>
     <url>%2F2018%2F08%2F13%2Fpython%E6%89%93%E5%8C%85%E7%9A%84%E8%89%B0%E9%9A%BE%E4%B9%8B%E6%97%85%2F</url>
     <content type="text"><![CDATA[前几日，我做了一个简单地划词翻译工具，还挺好用的，但是作为一个python脚本，每次都要打开命令行去执行或者是用spyder太过麻烦了，本来就是想简单简单再简单，所以一心搞事的我又踏上了艰难的python打包之旅。python打包成exe执行文件是挺费劲的，毕竟python本身是没有这个工具的。我用的anaconda也没有这个功能。经过查阅资料，我发现其实python有两个比较好用的打包工具，一个是pyinstaller，一个是py2exe。当时年轻的我还没有意识到，我即将为我的冲动付出时间的代价。 安装模块 py2exe因为我用的是python2.7，我一看py2exe名字里带有2，心想没错了，决定就是你了，于是我在命令行界面如狂风骤雨般地敲打出 pip install py2exe，黑色屏幕一阵闪动，跳出血红大字：你的版本太低，看不上你。原来py2exe只能在3.3版本或者更新的版本才能使用。遂放弃 pyinstaller照样是如狂风骤雨般地敲打出pip install pyinstaller，哈哈，一次成功。 pyinstaller微操指南pyinstaller使用方法还挺简单，在命令行界面跳转到自己的脚本目录下，输入1pyinstaller *.py 立马开始工作，很快，命令行显示生成成功。与此同时在此目录下出现了一个build文件夹，打开文件夹，出现以脚本命名的文件夹，点进去，有个exe文件，说时迟那时快，我的鼠标立马就点过去，一个黑框闪过，结果啥也没有？？？正在我百思不得其解时，我发现一个warntemp.txt，点进去。哇，一堆错误——全是missing，pyinstaller这个也是神奇，就算失败了也能给你生成出来，佩服佩服。但是佩服归佩服，怎么解决呢？原来，pyinstaller有个参数-p 文件路径，输入了此路径，就可以解决找不到模块的问题了。12pyinstaller *.py -p E:\DevelopTools\Anaconda2\Lib\site-packages#我这里模块路径是这个，大家灵活点找到python模块的文件夹 重新再来一遍，这一次，黑框闪过，成功运行。pyinstaller 一般有几个参数 ：-w（不带命令行框）-F（一整个文件，单EXE） bug总是来得措手不及我内心这个激动啊，好，我马上给我的小伙伴发一个，亮瞎他们的狗眼。我开开心心地将它挪到桌面，突然就不行了，难道是我的心不灵，还是这个打包器太倔，只能指定位置运行？于是我又给他小心翼翼地放回原来的地方，也还是不行。那我重新生成总可以了吧，它出现在那里，似乎一切都没变过，但是，却他已经不再是他了，他死了，永远的死了。于是我只能动用重启大法，重启之后，一切都是新鲜的模样，什么都是新的，每一个电子都似乎焕发了新的生机。他也随着电子，一起睁开了眼，复制，翻译，是那么的行云流水。我的眼眶不禁开始湿润，我开始思考，究竟是什么，是那隐藏在幽暗电子空穴里涌动的bug，还是那冥冥中的天意，亦或者是我那摇摇欲坠，随风而去的发丝还没离去，让它不满意，发脾气，闹别扭？我踏上了一条寻找答案的道路，我左手谷歌，右手百度，一下去stackoverflow寻经问道，一下去cnds广布英雄帖，走过一道道荒芜的答案，尝试每一种可能的解法，只为我的程序能够让小伙伴的眼亮瞎。这样的我难道就不受世人待见吗，我在黑夜里忍受这血丝遍布的瞳孔带给我的痛楚，我在黎明前悄悄打开我的屏幕享受我的孤独，我一次又一次，失败又失败，可是我，永不动摇。我再一次打开warntemp.txt，里面还是存在着错误，我一个又一个的添加路径，一遍又一遍的输入指令，我感觉我的生命，一点一点归于死寂。 bug之死苍天不负有心人，bug终能死我手。我用cmd打开我移动过的程序，里面赫然说着，有个模块跳出，哈哈，原来如此，原来是我的模块问题1234567def getCopyText(): wc.OpenClipboard() copy_text = wc.GetClipboardData(win32con.CF_TEXT) copy_text=copy_text.strip().replace("\r\n"," ").replace("\n"," ").replace("\r"," ") wc.CloseClipboard() return copy_text#返会是否有新的复制数据 乍一看，问题无有，但是由于我们打开了剪切板，而windows的剪切板功能超级强大，它不仅能够复制文字，还能复制文档，程序，当我移动程序的时候，我实际上是将程序复制到了剪切板，此时这个模块就不能正常工作，就会抛出异常，我终于明白了问题所在，我复制一段文字，打开程序，完美运行，nice！bug已死，黄天当立，我也要继续下一段代码的编写。程序附上点击下载]]></content>
@@ -53,9 +63,9 @@
     <url>%2F2018%2F08%2F04%2Fccs811%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97%2F</url>
     <content type="text"><![CDATA[前言最近使用CCS811这一款集成环境参数测量芯片，由于CCS811本身的原因，导致调试颇为不顺利。现在已经调试出来，把自己的经验分享给大家。主控芯片stm32f103。 问题一：无法正常读取硬件id及状态这个问题有可能是： 1.进行了某些误操作，导致CCS811芯片本身跑飞，所以怎么复位都不能读取。解决办法是对芯片复位，即INT脚接地2.IIC通讯本身有问题，讲IIC通讯的读和写里的延迟加大，至少5us 问题二：从boot模式转换到测量模式失败当上面的参数能读取出来的时候，其实通讯本身已经没有问题，但是由于CCS811内部集成的MCU需要一定的时间转换模式，即当我们发送测量转换指令后，必须等待至少180us时间，才能够对ccs811进行读写操作，假如提前读写便导致CCS811跑飞。解决办法，当发送转换指令时必须等待180us，代码如下 12345678910111213141516//测量数据前必须开启void app_Start(void)&#123; nWAKE=0; delay_us(50); IIC_Start(); IIC_Send_Byte(WRIT); //发送写命令 if(IIC_Wait_Ack())&#123; IIC_Stop();return;&#125; IIC_Send_Byte(0xF4); delay_us(180); //必须等待180us以上才能够收到应答 if(IIC_Wait_Ack())&#123;IIC_Stop();return;&#125; IIC_Stop(); nWAKE=1;&#125; 问题三：进入测量模式但无法读取环境参数这个问题也是CCS811内部集成的MCU的锅，当进入测量模式后，CCS811的IIC通讯就变慢了，也就是说，IIC通讯必须变慢，否则CCS811反应不过来。解决办法是调整IIC读写速度，读写延迟至少50us。代码如下：123456789101112131415161718192021222324252627282930313233343536373839404142//测量数据前必须开启void IIC_Send_Byte(u8 txd)&#123; u8 t; SDA_OUT(); IIC_SCL=0;//拉低时钟开始数据传输 for(t=0;t&lt;8;t++) &#123; if((txd&amp;0x80)&gt;&gt;7) IIC_SDA=1; else IIC_SDA=0; txd&lt;&lt;=1; delay_us(50); //对TEA5767这三个延时都是必须的 IIC_SCL=1; delay_us(50); IIC_SCL=0; delay_us(50); &#125; &#125; //读1个字节，ack=1时，发送ACK，ack=0，发送nACK u8 IIC_Read_Byte(unsigned char ack)&#123; unsigned char i,receive=0; SDA_IN();//SDA设置为输入 for(i=0;i&lt;8;i++ ) &#123; IIC_SCL=0; delay_us(50); IIC_SCL=1; receive&lt;&lt;=1; if(READ_SDA)receive++; delay_us(50); &#125; if (!ack) IIC_NAck();//发送nACK else IIC_Ack(); //发送ACK return receive;&#125; 其他问题按照器件手册上的介绍都可以解决 结束语调试一块板子真的很不容易，尤其是官方文档写的奇奇怪怪的。一开始以为IIC有问题，调了两三天，后面才明白怎么回事，如果有一块逻辑分析仪应该不用这么久吧。附上我写的库，祝大家能够早日调出来。点击下载]]></content>
       <tags>
+        <tag>stm32f103</tag>
         <tag>ccs811</tag>
         <tag>stm32</tag>
-        <tag>stm32f103</tag>
       </tags>
   </entry>
   <entry>

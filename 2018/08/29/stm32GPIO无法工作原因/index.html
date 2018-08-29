@@ -3,18 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2018/8 | 我的博客</title>
+  <title>stm32GPIO无法工作原因 | 我的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录生活点滴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的博客">
-<meta property="og:url" content="https://ltengy.github.io/archives/2018/08/index.html">
+  <meta name="description" content="最近在调试0.96寸oled时遇见了一个非常奇怪的问题，当我软件模拟spi时某些引脚死活不工作，一开始我以为是我的板子问题，但实际上是stm32对于某些引脚默认有一些操作，导致无法正常的初始化。 stm32默认开启的JTAG模式对于开发者来说，stm32很多引脚都有非常丰富的功能，能让我们开发者进行很多功能的开发，但是正是因为引脚功能太过丰富，说明文档虽然相比其他芯片已经很清晰了，但是依然会忽略某">
+<meta name="keywords" content="stm32f103,GPIO,Bug">
+<meta property="og:type" content="article">
+<meta property="og:title" content="stm32GPIO无法工作原因">
+<meta property="og:url" content="https://ltengy.github.io/2018/08/29/stm32GPIO无法工作原因/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="记录生活点滴">
+<meta property="og:description" content="最近在调试0.96寸oled时遇见了一个非常奇怪的问题，当我软件模拟spi时某些引脚死活不工作，一开始我以为是我的板子问题，但实际上是stm32对于某些引脚默认有一些操作，导致无法正常的初始化。 stm32默认开启的JTAG模式对于开发者来说，stm32很多引脚都有非常丰富的功能，能让我们开发者进行很多功能的开发，但是正是因为引脚功能太过丰富，说明文档虽然相比其他芯片已经很清晰了，但是依然会忽略某">
 <meta property="og:locale" content="zh-Fans">
+<meta property="og:image" content="https://ltengy.github.io/images/stmGPIO.png">
+<meta property="og:updated_time" content="2018-08-29T15:25:52.858Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我的博客">
-<meta name="twitter:description" content="记录生活点滴">
+<meta name="twitter:title" content="stm32GPIO无法工作原因">
+<meta name="twitter:description" content="最近在调试0.96寸oled时遇见了一个非常奇怪的问题，当我软件模拟spi时某些引脚死活不工作，一开始我以为是我的板子问题，但实际上是stm32对于某些引脚默认有一些操作，导致无法正常的初始化。 stm32默认开启的JTAG模式对于开发者来说，stm32很多引脚都有非常丰富的功能，能让我们开发者进行很多功能的开发，但是正是因为引脚功能太过丰富，说明文档虽然相比其他芯片已经很清晰了，但是依然会忽略某">
+<meta name="twitter:image" content="https://ltengy.github.io/images/stmGPIO.png">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
   
@@ -40,8 +44,8 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: false,
-          isArchive: true,
+          isPost: true,
+          isArchive: false,
           isTag: false,
           isCategory: false,
           open_in_new: false
@@ -221,240 +225,213 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-stm32GPIO无法工作原因" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2018/08/29/stm32GPIO无法工作原因/" class="archive-article-date">
-      <time datetime="2018-08-29T14:50:49.000Z" itemprop="datePublished">08-29</time>
+    <div class="article-meta">
+      <a href="/2018/08/29/stm32GPIO无法工作原因/" class="article-date">
+      <time datetime="2018-08-29T14:50:49.000Z" itemprop="datePublished">2018-08-29</time>
 </a>
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/29/stm32GPIO无法工作原因/">stm32GPIO无法工作原因</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      stm32GPIO无法工作原因
     </h1>
   
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 
-          
+        
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bug/">Bug</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GPIO/">GPIO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stm32f103/">stm32f103</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+      </div>
+      
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2018/08/13/python打包的艰难之旅/" class="archive-article-date">
-      <time datetime="2018-08-13T05:46:54.000Z" itemprop="datePublished">08-13</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
+      
+		
+			
+		
+		
+		<p>最近在调试0.96寸oled时遇见了一个非常奇怪的问题，当我软件模拟spi时某些引脚死活不工作，一开始我以为是我的板子问题，但实际上是stm32对于某些引脚默认有一些操作，导致无法正常的初始化。</p>
+<h1 id="stm32默认开启的JTAG模式"><a href="#stm32默认开启的JTAG模式" class="headerlink" title="stm32默认开启的JTAG模式"></a>stm32默认开启的JTAG模式</h1><p>对于开发者来说，stm32很多引脚都有非常丰富的功能，能让我们开发者进行很多功能的开发，但是正是因为引脚功能太过丰富，说明文档虽然相比其他芯片已经很清晰了，但是依然会忽略某些重要的东西。比如说stm32对于某些脚默认开启了JTAG模式，假如没有显式声明取消JTAG功能，那么关于这些引脚的所有功能初始化都会失败。<br>根据stm32f103的操作手册，PA13，PA14，PA15，PB3，PB4，这几个脚都是默认开启了JTAG模式<img src="/images/stmGPIO.png" alt="">，所以当我们需要用到这几个脚时，必须声明<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO ,ENABLE);//重映射需要先使能AFIO时钟</span><br><span class="line">GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable,ENABLE);//只关闭JTAG而保留SWD</span><br></pre></td></tr></table></figure></p>
+<h1 id="GPIO引脚问题"><a href="#GPIO引脚问题" class="headerlink" title="GPIO引脚问题"></a>GPIO引脚问题</h1><p>一般来说，碰到GPIO引脚问题，第一步都是检查是否虚焊，假如没有虚焊的话，检查代码配置问题，如果代码配置也没有问题的话，就必须回到操作手册上看引脚定义，看该引脚是否可能存在默认的引脚配置，比如上文提到的JTAG模式。</p>
+
+		
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
         </div>
-         
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/13/python打包的艰难之旅/">python打包的艰难之旅</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pyinstaller/">pyinstaller</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/08/29/stm32GPIO无法工作原因/">stm32GPIO无法工作原因</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Ltengy 的个人博客">Ltengy</a></p>
+        <p><span>发布时间:</span>2018年08月29日 - 22时50分</p>
+        <p><span>最后更新:</span>2018年08月29日 - 23时25分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/08/29/stm32GPIO无法工作原因/" title="stm32GPIO无法工作原因">https://ltengy.github.io/2018/08/29/stm32GPIO无法工作原因/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://ltengy.github.io/2018/08/29/stm32GPIO无法工作原因/　　作者: Ltengy" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
     </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/13/python打包的艰难之旅/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">python打包的艰难之旅</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#stm32默认开启的JTAG模式"><span class="toc-number">1.</span> <span class="toc-text">stm32默认开启的JTAG模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GPIO引脚问题"><span class="toc-number">2.</span> <span class="toc-text">GPIO引脚问题</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
     
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2018/08/11/python实现划词翻译/" class="archive-article-date">
-      <time datetime="2018-08-11T06:25:39.000Z" itemprop="datePublished">08-11</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/11/python实现划词翻译/">python实现划词翻译</a>
-    </h1>
-  
 
-        <div class="article-info info-on-archive">
-          
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/划词翻译/">划词翻译</a></li></ul>
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/08/13/python打包的艰难之旅/" title="下一篇: python打包的艰难之旅">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
     </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/08/29/stm32GPIO无法工作原因/">stm32GPIO无法工作原因</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/13/python打包的艰难之旅/">python打包的艰难之旅</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/11/python实现划词翻译/">python实现划词翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/关于自定义标签库找不到路径的解决办法/">关于自定义标签库找不到路径的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/06/基于spfk主题的自动摘要/">基于spfk主题的自动摘要</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/04/验证码demo/">java实现验证码demo</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/04/ccs811调试指南/">ccs811调试指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/28/数据库练习/">SQL 45道经典练习</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/01/如何使用github创建自己的博客/">如何在windows使用github创建自己的博客</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2018/08/07/关于自定义标签库找不到路径的解决办法/" class="archive-article-date">
-      <time datetime="2018-08-07T03:24:23.000Z" itemprop="datePublished">08-07</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/07/关于自定义标签库找不到路径的解决办法/">关于自定义标签库找不到路径的解决办法</a>
-    </h1>
-  
 
-        <div class="article-info info-on-archive">
-          
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/servlet/">servlet</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自定义标签库/">自定义标签库</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/路径错误/">路径错误</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2018/08/06/基于spfk主题的自动摘要/" class="archive-article-date">
-      <time datetime="2018-08-06T07:49:17.000Z" itemprop="datePublished">08-06</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/06/基于spfk主题的自动摘要/">基于spfk主题的自动摘要</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ReadMore/">ReadMore</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spfk/">spfk</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2018/08/04/验证码demo/" class="archive-article-date">
-      <time datetime="2018-08-04T01:46:57.000Z" itemprop="datePublished">08-04</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/04/验证码demo/">java实现验证码demo</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ajax/">ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/servlet/">servlet</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2018/08/04/ccs811调试指南/" class="archive-article-date">
-      <time datetime="2018-08-04T00:15:49.000Z" itemprop="datePublished">08-04</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/04/ccs811调试指南/">ccs811调试指南</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ccs811/">ccs811</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stm32/">stm32</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stm32f103/">stm32f103</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
@@ -519,17 +496,6 @@
         };
     })
 </script>
-
-    <button class="hide-labels">TAG 开关</button>
-    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js">
-    </script>
-    <script>
-        $(document).ready(function() {
-            $("button").click(function() {
-                $(".article-info").toggle(200);
-            });
-        });
-    </script>
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
