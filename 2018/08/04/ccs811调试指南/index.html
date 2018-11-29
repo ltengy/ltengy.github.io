@@ -6,7 +6,7 @@
   <title>ccs811调试指南 | 我的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言最近使用CCS811这一款集成环境参数测量芯片，由于CCS811本身的原因，导致调试颇为不顺利。现在已经调试出来，把自己的经验分享给大家。主控芯片stm32f103。 问题一：无法正常读取硬件id及状态这个问题有可能是： 1.进行了某些误操作，导致CCS811芯片本身跑飞，所以怎么复位都不能读取。解决办法是对芯片复位，即INT脚接地2.IIC通讯本身有问题，讲IIC通讯的读和写里的延迟加大，至">
-<meta name="keywords" content="stm32f103,ccs811,stm32">
+<meta name="keywords" content="ccs811,stm32,stm32f103">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ccs811调试指南">
 <meta property="og:url" content="https://ltengy.github.io/2018/08/04/ccs811调试指南/index.html">
@@ -511,8 +511,7 @@
     })
 </script>
 
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <script src="/js/search.js"></script> 
 
   <script language="javascript">
