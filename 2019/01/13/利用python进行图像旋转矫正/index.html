@@ -3,23 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>python打包的艰难之旅 | 我的博客</title>
+  <title>利用python进行纸质文档识别（一）图像旋转矫正 | 我的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前几日，我做了一个简单地划词翻译工具，还挺好用的，但是作为一个python脚本，每次都要打开命令行去执行或者是用spyder太过麻烦了，本来就是想简单简单再简单，所以一心搞事的我又踏上了艰难的python打包之旅。python打包成exe执行文件是挺费劲的，毕竟python本身是没有这个工具的。我用的anaconda也没有这个功能。经过查阅资料，我发现其实python有两个比较好用的打包工具，一个">
-<meta name="keywords" content="python,pyinstaller">
+  <meta name="description" content="前言这学期我们上了一门软件工程课和数字图像处理课，软件工程课课设要求大家设计一款软件。作为一个学生助理，我早就对学校的问卷调查不满意了，填写完的纸质表格竟然还要输入成电子表格，人工手动输入，未免也太难受了。所以结合我所学的知识，我准备利用python+opencv做一款纸质文档识别软件，专门识别纸质表格转化成为电子表格。 原理因为表格不仅仅有文字信息，同时还有位置信息，所以在识别表格时我们应该识别">
+<meta name="keywords" content="python,旋转矫正,opencv">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python打包的艰难之旅">
-<meta property="og:url" content="https://ltengy.github.io/2018/08/13/python打包的艰难之旅/index.html">
+<meta property="og:title" content="利用python进行纸质文档识别（一）图像旋转矫正">
+<meta property="og:url" content="https://ltengy.github.io/2019/01/13/利用python进行图像旋转矫正/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="前几日，我做了一个简单地划词翻译工具，还挺好用的，但是作为一个python脚本，每次都要打开命令行去执行或者是用spyder太过麻烦了，本来就是想简单简单再简单，所以一心搞事的我又踏上了艰难的python打包之旅。python打包成exe执行文件是挺费劲的，毕竟python本身是没有这个工具的。我用的anaconda也没有这个功能。经过查阅资料，我发现其实python有两个比较好用的打包工具，一个">
+<meta property="og:description" content="前言这学期我们上了一门软件工程课和数字图像处理课，软件工程课课设要求大家设计一款软件。作为一个学生助理，我早就对学校的问卷调查不满意了，填写完的纸质表格竟然还要输入成电子表格，人工手动输入，未免也太难受了。所以结合我所学的知识，我准备利用python+opencv做一款纸质文档识别软件，专门识别纸质表格转化成为电子表格。 原理因为表格不仅仅有文字信息，同时还有位置信息，所以在识别表格时我们应该识别">
 <meta property="og:locale" content="zh-Fans">
-<meta property="og:image" content="https://ltengy.github.io/images/cmdError.png">
-<meta property="og:image" content="https://ltengy.github.io/images/windowError.png">
-<meta property="og:updated_time" content="2018-08-13T06:54:12.617Z">
+<meta property="og:image" content="https://ltengy.github.io/images/ExcelSee/rowRotate.jpg">
+<meta property="og:image" content="https://ltengy.github.io/images/ExcelSee/Rotated.jpg">
+<meta property="og:updated_time" content="2019-01-13T08:06:42.632Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python打包的艰难之旅">
-<meta name="twitter:description" content="前几日，我做了一个简单地划词翻译工具，还挺好用的，但是作为一个python脚本，每次都要打开命令行去执行或者是用spyder太过麻烦了，本来就是想简单简单再简单，所以一心搞事的我又踏上了艰难的python打包之旅。python打包成exe执行文件是挺费劲的，毕竟python本身是没有这个工具的。我用的anaconda也没有这个功能。经过查阅资料，我发现其实python有两个比较好用的打包工具，一个">
-<meta name="twitter:image" content="https://ltengy.github.io/images/cmdError.png">
+<meta name="twitter:title" content="利用python进行纸质文档识别（一）图像旋转矫正">
+<meta name="twitter:description" content="前言这学期我们上了一门软件工程课和数字图像处理课，软件工程课课设要求大家设计一款软件。作为一个学生助理，我早就对学校的问卷调查不满意了，填写完的纸质表格竟然还要输入成电子表格，人工手动输入，未免也太难受了。所以结合我所学的知识，我准备利用python+opencv做一款纸质文档识别软件，专门识别纸质表格转化成为电子表格。 原理因为表格不仅仅有文字信息，同时还有位置信息，所以在识别表格时我们应该识别">
+<meta name="twitter:image" content="https://ltengy.github.io/images/ExcelSee/rowRotate.jpg">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
   
@@ -226,11 +226,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-python打包的艰难之旅" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-利用python进行图像旋转矫正" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/08/13/python打包的艰难之旅/" class="article-date">
-      <time datetime="2018-08-13T05:46:54.000Z" itemprop="datePublished">2018-08-13</time>
+      <a href="/2019/01/13/利用python进行图像旋转矫正/" class="article-date">
+      <time datetime="2019-01-13T04:01:33.000Z" itemprop="datePublished">2019-01-13</time>
 </a>
     </div>
   
@@ -243,7 +243,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      python打包的艰难之旅
+      利用python进行纸质文档识别（一）图像旋转矫正
     </h1>
   
 
@@ -254,7 +254,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pyinstaller/">pyinstaller</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv/">opencv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/旋转矫正/">旋转矫正</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -267,17 +267,12 @@
 			
 		
 		
-		<p>前几日，我做了一个简单地划词翻译工具，还挺好用的，但是作为一个python脚本，每次都要打开命令行去执行或者是用spyder太过麻烦了，本来就是想简单简单再简单，所以一心搞事的我又踏上了艰难的python打包之旅。<br>python打包成exe执行文件是挺费劲的，毕竟python本身是没有这个工具的。我用的anaconda也没有这个功能。经过查阅资料，我发现其实python有两个比较好用的打包工具，一个是pyinstaller，一个是py2exe。当时年轻的我还没有意识到，我即将为我的冲动付出时间的代价。</p>
-<h1 id="安装模块"><a href="#安装模块" class="headerlink" title="安装模块"></a>安装模块</h1><ol>
-<li>py2exe<br>因为我用的是python2.7，我一看py2exe名字里带有2，心想没错了，决定就是你了，于是我在命令行界面如狂风骤雨般地敲打出 pip install py2exe，黑色屏幕一阵闪动，跳出血红大字：你的版本太低，看不上你。原来py2exe只能在3.3版本或者更新的版本才能使用。遂放弃<br><img src="/images/cmdError.png" alt=""></li>
-<li>pyinstaller<br>照样是如狂风骤雨般地敲打出pip install pyinstaller，哈哈，一次成功。</li>
-</ol>
-<h1 id="pyinstaller微操指南"><a href="#pyinstaller微操指南" class="headerlink" title="pyinstaller微操指南"></a>pyinstaller微操指南</h1><p>pyinstaller使用方法还挺简单，在命令行界面跳转到自己的脚本目录下，输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller *.py</span><br></pre></td></tr></table></figure></p>
-<p>立马开始工作，很快，命令行显示生成成功。与此同时在此目录下出现了一个build文件夹，打开文件夹，出现以脚本命名的文件夹，点进去，有个exe文件，说时迟那时快，我的鼠标立马就点过去，一个黑框闪过，结果啥也没有？？？<br>正在我百思不得其解时，我发现一个warntemp.txt，点进去。哇，一堆错误——全是missing，pyinstaller这个也是神奇，就算失败了也能给你生成出来，佩服佩服。但是佩服归佩服，怎么解决呢？原来，pyinstaller有个参数-p 文件路径，输入了此路径，就可以解决找不到模块的问题了。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller *.py  -p E:\DevelopTools\Anaconda2\Lib\site-packages</span><br><span class="line"><span class="comment">#我这里模块路径是这个，大家灵活点找到python模块的文件夹</span></span><br></pre></td></tr></table></figure></p>
-<p>重新再来一遍，这一次，黑框闪过，成功运行。<br>pyinstaller 一般有几个参数 ：<br>-w（不带命令行框）<br>-F（一整个文件，单EXE）</p>
-<h1 id="bug总是来得措手不及"><a href="#bug总是来得措手不及" class="headerlink" title="bug总是来得措手不及"></a>bug总是来得措手不及</h1><p>我内心这个激动啊，好，我马上给我的小伙伴发一个，亮瞎他们的狗眼。我开开心心地将它挪到桌面，突然就不行了，<img src="/images/windowError.png" alt=""><br>难道是我的心不灵，还是这个打包器太倔，只能指定位置运行？于是我又给他小心翼翼地放回原来的地方，也还是不行。那我重新生成总可以了吧，它出现在那里，似乎一切都没变过，但是，却他已经不再是他了，他死了，永远的死了。于是我只能动用重启大法，重启之后，一切都是新鲜的模样，什么都是新的，每一个电子都似乎焕发了新的生机。他也随着电子，一起睁开了眼，复制，翻译，是那么的行云流水。我的眼眶不禁开始湿润，我开始思考，究竟是什么，是那隐藏在幽暗电子空穴里涌动的bug，还是那冥冥中的天意，亦或者是我那摇摇欲坠，随风而去的发丝还没离去，让它不满意，发脾气，闹别扭？<br>我踏上了一条寻找答案的道路，我左手谷歌，右手百度，一下去stackoverflow寻经问道，一下去cnds广布英雄帖，走过一道道荒芜的答案，尝试每一种可能的解法，只为我的程序能够让小伙伴的眼亮瞎。这样的我难道就不受世人待见吗，我在黑夜里忍受这血丝遍布的瞳孔带给我的痛楚，我在黎明前悄悄打开我的屏幕享受我的孤独，我一次又一次，失败又失败，可是我，永不动摇。<br>我再一次打开warntemp.txt，里面还是存在着错误，我一个又一个的添加路径，一遍又一遍的输入指令，我感觉我的生命，一点一点归于死寂。</p>
-<h1 id="bug之死"><a href="#bug之死" class="headerlink" title="bug之死"></a>bug之死</h1><p>苍天不负有心人，bug终能死我手。我用cmd打开我移动过的程序，里面赫然说着，有个模块跳出，哈哈，原来如此，原来是我的模块问题<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def getCopyText():</span><br><span class="line">    wc.OpenClipboard()</span><br><span class="line">    copy_text = wc.GetClipboardData(win32con.CF_TEXT)</span><br><span class="line">    copy_text=copy_text.strip().replace(<span class="string">"\r\n"</span>,<span class="string">" "</span>).replace(<span class="string">"\n"</span>,<span class="string">" "</span>).replace(<span class="string">"\r"</span>,<span class="string">" "</span>)</span><br><span class="line">    wc.CloseClipboard()</span><br><span class="line">    <span class="built_in">return</span> copy_text</span><br><span class="line"><span class="comment">#返会是否有新的复制数据</span></span><br></pre></td></tr></table></figure></p>
-<p>乍一看，问题无有，但是由于我们打开了剪切板，而windows的剪切板功能超级强大，它不仅能够复制文字，还能复制文档，程序，当我移动程序的时候，我实际上是将程序复制到了剪切板，此时这个模块就不能正常工作，就会抛出异常，我终于明白了问题所在，我复制一段文字，打开程序，完美运行，nice！<br>bug已死，黄天当立，我也要继续下一段代码的编写。程序附上<br><a href="/download/copyTranster.zip">点击下载</a></p>
+		<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这学期我们上了一门软件工程课和数字图像处理课，软件工程课课设要求大家设计一款软件。作为一个学生助理，我早就对学校的问卷调查不满意了，填写完的纸质表格竟然还要输入成电子表格，人工手动输入，未免也太难受了。所以结合我所学的知识，我准备利用python+opencv做一款纸质文档识别软件，专门识别纸质表格转化成为电子表格。</p>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>因为表格不仅仅有文字信息，同时还有位置信息，所以在识别表格时我们应该识别出文字和位置信息。文字信息一般是可以用OCR技术识别出来，这部分有很多相关的模块、库可以使用，但是位置信息的识别就有一定的困难。所以我们首先要解决这个位置信息。</p>
+<p>当我们拿到一张纸质表格时，一般来说都会有框体，这个时候我们只要把最外围的框体识别出来，接着递归识别所有框体，然后再对所有小框体进行进行文字识别操作就会很简单。</p>
+<h1 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h1><p>很明显，第一步是要解决最外头的这个框线识别问题。一般来说，不是每个人拍照都是横平竖直的，所以我们必须要对原始图像进行适当的倾斜矫正。在opencv里，我们有两个很好用的函数来进行这样的操作：<br>先用cv2.getPerspectiveTransform（target_points, four_points）得到旋转矩阵<br>然后再用cv2.warpPerspective(img, M, (weight, height))进行透视变换。<br>下面是该函数的一个演示<br><img src="/images/ExcelSee/rowRotate.jpg" alt=""><br>如果我们知道屏幕中间的四个角的位置，那么我们就能把它通过函数给校正</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">Created on Sun Jan 13 09:22:51 2019</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">@author: lei</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line"></span><br><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line">img= cv2.imread(<span class="string">'rowRotate.jpg'</span>)<span class="comment">#读取原始图片</span></span><br><span class="line">target_points =[[278,189],[758,336],[570,1034],[65,900]]</span><br><span class="line"><span class="comment">#这里我们通过人工的方式读出四个角点A，B，C，D</span></span><br><span class="line">height = img.shape[0]</span><br><span class="line">weight = img.shape[1]</span><br><span class="line">four_points= np.array(((0, 0),</span><br><span class="line">                       (weight - 1, 0),</span><br><span class="line">                       (weight - 1, height - 1),</span><br><span class="line">                       (0, height - 1)),</span><br><span class="line">                    np.float32)</span><br><span class="line">target_points = np.array(target_points, np.float32)<span class="comment">#统一格式</span></span><br><span class="line">M = cv2.getPerspectiveTransform(target_points, four_points)</span><br><span class="line">Rotated= cv2.warpPerspective(img, M, (weight, height))</span><br><span class="line">cv2.imwrite(<span class="string">"Rotated.jpg"</span>,Rotated)</span><br></pre></td></tr></table></figure>
+<p>程序运行效果图<br><img src="/images/ExcelSee/Rotated.jpg" alt=""><br>旋转裁切的效果很棒，但这只是人工的方式寻找四个角点，可不可以想办法实现程序自动裁切呢？<br>对于这个问题，我经过大量地查阅资料和实验，终于发现了一个比较好的办法。那就是先把轮廓线找到，然后找轮廓线里面的角点。<br>由于篇幅关系，我将把这个留在后面讲解</p>
 
 		
       
@@ -323,13 +318,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/08/13/python打包的艰难之旅/">python打包的艰难之旅</a></p>
+        <p><span>本文标题:</span><a href="/2019/01/13/利用python进行图像旋转矫正/">利用python进行纸质文档识别（一）图像旋转矫正</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Ltengy 的个人博客">Ltengy</a></p>
-        <p><span>发布时间:</span>2018年08月13日 - 13时46分</p>
-        <p><span>最后更新:</span>2018年08月13日 - 14时54分</p>
+        <p><span>发布时间:</span>2019年01月13日 - 12时01分</p>
+        <p><span>最后更新:</span>2019年01月13日 - 16时06分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/08/13/python打包的艰难之旅/" title="python打包的艰难之旅">https://ltengy.github.io/2018/08/13/python打包的艰难之旅/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://ltengy.github.io/2018/08/13/python打包的艰难之旅/　　作者: Ltengy" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/01/13/利用python进行图像旋转矫正/" title="利用python进行纸质文档识别（一）图像旋转矫正">https://ltengy.github.io/2019/01/13/利用python进行图像旋转矫正/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://ltengy.github.io/2019/01/13/利用python进行图像旋转矫正/　　作者: Ltengy" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -342,18 +337,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2018/08/29/stm32GPIO无法工作原因/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          stm32GPIO无法工作原因
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/08/11/python实现划词翻译/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">python实现划词翻译</div>
+    <a href="/2018/11/24/Git无法推送代码至仓库/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Git无法推送代码至仓库</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -364,7 +350,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#安装模块"><span class="toc-number">1.</span> <span class="toc-text">安装模块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pyinstaller微操指南"><span class="toc-number">2.</span> <span class="toc-text">pyinstaller微操指南</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bug总是来得措手不及"><span class="toc-number">3.</span> <span class="toc-text">bug总是来得措手不及</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bug之死"><span class="toc-number">4.</span> <span class="toc-text">bug之死</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#原理"><span class="toc-number">2.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实现方法"><span class="toc-number">3.</span> <span class="toc-text">实现方法</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -416,13 +402,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/08/29/stm32GPIO无法工作原因/" title="上一篇: stm32GPIO无法工作原因">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2018/08/11/python实现划词翻译/" title="下一篇: python实现划词翻译">
+            <a href="/2018/11/24/Git无法推送代码至仓库/" title="下一篇: Git无法推送代码至仓库">
                 <i class="fa fa-angle-right"></i>
             </a>
         
