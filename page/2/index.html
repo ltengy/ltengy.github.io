@@ -150,7 +150,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/Bug/" style="font-size: 10px;">Bug</a> <a href="/tags/Error/" style="font-size: 10px;">Error</a> <a href="/tags/GPIO/" style="font-size: 10px;">GPIO</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/ReadMore/" style="font-size: 10px;">ReadMore</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/ccs811/" style="font-size: 10px;">ccs811</a> <a href="/tags/django/" style="font-size: 10px;">django</a> <a href="/tags/github/" style="font-size: 15px;">github</a> <a href="/tags/githubdesk/" style="font-size: 10px;">githubdesk</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/pyinstaller/" style="font-size: 10px;">pyinstaller</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/python3/" style="font-size: 10px;">python3</a> <a href="/tags/servlet/" style="font-size: 15px;">servlet</a> <a href="/tags/spfk/" style="font-size: 10px;">spfk</a> <a href="/tags/stm32/" style="font-size: 10px;">stm32</a> <a href="/tags/stm32f103/" style="font-size: 15px;">stm32f103</a> <a href="/tags/划词翻译/" style="font-size: 10px;">划词翻译</a> <a href="/tags/旋转矫正/" style="font-size: 10px;">旋转矫正</a> <a href="/tags/自定义标签库/" style="font-size: 10px;">自定义标签库</a> <a href="/tags/路径错误/" style="font-size: 10px;">路径错误</a>
+                        <a href="/tags/Bug/" style="font-size: 10px;">Bug</a> <a href="/tags/Error/" style="font-size: 10px;">Error</a> <a href="/tags/GPIO/" style="font-size: 10px;">GPIO</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/ReadMore/" style="font-size: 10px;">ReadMore</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/ccs811/" style="font-size: 10px;">ccs811</a> <a href="/tags/django/" style="font-size: 10px;">django</a> <a href="/tags/github/" style="font-size: 15px;">github</a> <a href="/tags/githubdesk/" style="font-size: 10px;">githubdesk</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/opencv/" style="font-size: 15px;">opencv</a> <a href="/tags/pyinstaller/" style="font-size: 10px;">pyinstaller</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/python3/" style="font-size: 10px;">python3</a> <a href="/tags/servlet/" style="font-size: 15px;">servlet</a> <a href="/tags/spfk/" style="font-size: 10px;">spfk</a> <a href="/tags/stm32/" style="font-size: 10px;">stm32</a> <a href="/tags/stm32f103/" style="font-size: 15px;">stm32f103</a> <a href="/tags/划词翻译/" style="font-size: 10px;">划词翻译</a> <a href="/tags/旋转矫正/" style="font-size: 10px;">旋转矫正</a> <a href="/tags/自定义标签库/" style="font-size: 10px;">自定义标签库</a> <a href="/tags/角点探测/" style="font-size: 10px;">角点探测</a> <a href="/tags/路径错误/" style="font-size: 10px;">路径错误</a>
                     </div>
                 </section>
                 
@@ -225,6 +225,80 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-ccs811调试指南" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/08/04/ccs811调试指南/" class="article-date">
+      <time datetime="2018-08-04T00:15:49.000Z" itemprop="datePublished">2018-08-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/04/ccs811调试指南/">ccs811调试指南</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		
+			
+				
+				
+					
+					
+				
+				
+					
+					<p><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近使用CCS811这一款集成环境参数测量芯片，由于CCS811本身的原因，导致调试颇为不顺利。现在已经调试出来，把自己的经验分享给大家。主控芯片stm32f103。</p>
+<p>
+				
+			
+		
+		
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ccs811/">ccs811</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stm32/">stm32</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stm32f103/">stm32f103</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2018/08/04/ccs811调试指南/#more">阅读更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-数据库练习" class="article article-type-post" itemscope itemprop="blogPost">
   
