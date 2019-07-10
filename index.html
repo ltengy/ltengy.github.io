@@ -226,10 +226,10 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-手写BP网络并进行语音识别（二）" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Python实现BP网络并进行语音识别（一）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/06/09/手写BP网络并进行语音识别（二）/" class="article-date">
+      <a href="/2019/06/09/Python实现BP网络并进行语音识别（一）/" class="article-date">
       <time datetime="2019-06-09T12:45:40.000Z" itemprop="datePublished">2019-06-09</time>
 </a>
     </div>
@@ -243,7 +243,213 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/09/手写BP网络并进行语音识别（二）/">手写BP网络并进行语音识别（二）</a>
+      <a class="article-title" href="/2019/06/09/Python实现BP网络并进行语音识别（一）/">Python实现BP网络并进行语音识别（一）</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		
+			
+				
+				<p><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近学了一门智能控制，老师布置了一个大作业，要我们手写BP网络，然后BP设计模型训练，进行三个人的声音识别。在参考了网络大牛的实现，选用MFCC作为语音特征向量作为输入，搭建三层BP网络，在50轮训练后即实现了99%精度的模型。<br></p>
+			
+		
+		
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BP/">BP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/语音识别/">语音识别</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2019/06/09/Python实现BP网络并进行语音识别（一）/#more">阅读更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Python实现BP网络并进行语音识别（四）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/06/09/Python实现BP网络并进行语音识别（四）/" class="article-date">
+      <time datetime="2019-06-09T12:45:40.000Z" itemprop="datePublished">2019-06-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/09/Python实现BP网络并进行语音识别（四）/">Python实现BP网络并进行语音识别（四）</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		
+			
+				
+				
+					
+					
+				
+				
+					
+					<p><p>针对BP网络模型只适合固定大小的输入，我们对音频信号的MFCC系数进行二次特征提取，即从数百帧MFCC中提取出特征最大值，作为输入BP网络的信号。<br>    由于简单三层网络，可能会存在学习能力不强的情况。一开始我设计了一个20，100，3的网络，保证对MFCC系数的充分学习。模型在训练了200轮后顺利达到了$\left(0.99,0.99\right)$，训练集和验证集为$\left(0.8,0.2\right)$，总样本数量为697。训练结果说明MFCC可以提供独特的特征进行人声识别。但是在训练的过程中，我发现，训练结果准确率在195轮到200轮之间有一个飞速上涨的过程，平均每轮上涨8%。我怀疑是数据分布太相似，导致准确率最后才上升。<br>    为了验证我的假设，我训练了多组模型，发现准确率到达95%的轮次和隐藏层节点的个数成正比，与数据分布比例成反比。<br>    由分析可以知道，MFCC系数对音频特征的表征能力非常强，仅需要利用简单BP网络在极少次的训练下就可以取得非常好的效果。<br>    综上所述，在提取音频MFCC特征最大值系数后，BP网络仅需要$\left(20,3,3\right)$三层网络结构实现通过音频信号实现三个人的识别。<br>    代码Demo已经上传<a href="https://github.com/ltengy/voiceBP.git" target="_blank" rel="noopener">Github</a>，欢迎大家指点批评</p>
+<p>
+				
+			
+		
+		
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BP/">BP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/语音识别/">语音识别</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2019/06/09/Python实现BP网络并进行语音识别（四）/#more">阅读更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Python实现BP网络并进行语音识别（三）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/06/09/Python实现BP网络并进行语音识别（三）/" class="article-date">
+      <time datetime="2019-06-09T12:45:40.000Z" itemprop="datePublished">2019-06-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/09/Python实现BP网络并进行语音识别（三）/">Python实现BP网络并进行语音识别（三）</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		
+			
+				
+				<p><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在深度学习领域，一份好的数据决定了成功的一半。为了得到优质的声音样本，我特意选取了三位相声大师的单口相声，音频样本简单纯粹，每一位都选取了十分钟以上的音频信息。将音频信息安装停顿切成一个个不超过10s的小声音片段，然后对每一段音频进行MFCC特征提取，获得数百个带标签的音频样本。<br></p>
+			
+		
+		
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BP/">BP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/语音识别/">语音识别</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2019/06/09/Python实现BP网络并进行语音识别（三）/#more">阅读更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Python实现BP网络并进行语音识别（二）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/06/09/Python实现BP网络并进行语音识别（二）/" class="article-date">
+      <time datetime="2019-06-09T12:45:40.000Z" itemprop="datePublished">2019-06-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/09/Python实现BP网络并进行语音识别（二）/">Python实现BP网络并进行语音识别（二）</a>
     </h1>
   
 
@@ -273,205 +479,7 @@
 
       
         <p class="article-more-link">
-          <a  href="/2019/06/09/手写BP网络并进行语音识别（二）/#more">阅读更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-手写BP网络并进行语音识别（四）" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/06/09/手写BP网络并进行语音识别（四）/" class="article-date">
-      <time datetime="2019-06-09T12:45:40.000Z" itemprop="datePublished">2019-06-09</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/09/手写BP网络并进行语音识别（四）/">手写BP网络并进行语音识别（一）</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-		
-			
-				
-				<p><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近学了一门智能控制，老师布置了一个大作业，要我们手写BP网络，然后BP设计模型训练，进行三个人的声音识别。在参考了网络大牛的实现，选用MFCC作为语音特征向量作为输入，搭建三层BP网络，在50轮训练后即实现了99%精度的模型。<br></p>
-			
-		
-		
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BP/">BP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/语音识别/">语音识别</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/06/09/手写BP网络并进行语音识别（四）/#more">阅读更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-手写BP网络并进行语音识别（三）" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/06/09/手写BP网络并进行语音识别（三）/" class="article-date">
-      <time datetime="2019-06-09T12:45:40.000Z" itemprop="datePublished">2019-06-09</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/09/手写BP网络并进行语音识别（三）/">手写BP网络并进行语音识别（一）</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-		
-			
-				
-				<p><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近学了一门智能控制，老师布置了一个大作业，要我们手写BP网络，然后BP设计模型训练，进行三个人的声音识别。在参考了网络大牛的实现，选用MFCC作为语音特征向量作为输入，搭建三层BP网络，在50轮训练后即实现了99%精度的模型。<br></p>
-			
-		
-		
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BP/">BP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/语音识别/">语音识别</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/06/09/手写BP网络并进行语音识别（三）/#more">阅读更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-手写BP网络并进行语音识别（一）" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/06/09/手写BP网络并进行语音识别（一）/" class="article-date">
-      <time datetime="2019-06-09T12:45:40.000Z" itemprop="datePublished">2019-06-09</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/09/手写BP网络并进行语音识别（一）/">手写BP网络并进行语音识别（一）</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-		
-			
-				
-				<p><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近学了一门智能控制，老师布置了一个大作业，要我们手写BP网络，然后BP设计模型训练，进行三个人的声音识别。在参考了网络大牛的实现，选用MFCC作为语音特征向量作为输入，搭建三层BP网络，在50轮训练后即实现了99%精度的模型。<br></p>
-			
-		
-		
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BP/">BP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/语音识别/">语音识别</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/06/09/手写BP网络并进行语音识别（一）/#more">阅读更多 >></a>
+          <a  href="/2019/06/09/Python实现BP网络并进行语音识别（二）/#more">阅读更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -1046,23 +1054,21 @@
    </script>
 
 
-  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </div>
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
 </script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

@@ -3,24 +3,24 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>如何在windows使用github创建自己的博客 | 我的博客</title>
+  <title>Python实现BP网络并进行语音识别（三） | 我的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="目前貌似还没有桌面github的教程，我把我的经验拿出来和大家分享">
-<meta name="keywords" content="hexo,github,githubdesk">
+  <meta name="description" content="前言在深度学习领域，一份好的数据决定了成功的一半。为了得到优质的声音样本，我特意选取了三位相声大师的单口相声，音频样本简单纯粹，每一位都选取了十分钟以上的音频信息。将音频信息安装停顿切成一个个不超过10s的小声音片段，然后对每一段音频进行MFCC特征提取，获得数百个带标签的音频样本。">
+<meta name="keywords" content="python,BP,语音识别">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何在windows使用github创建自己的博客">
-<meta property="og:url" content="https://ltengy.github.io/2018/06/01/如何使用github创建自己的博客/index.html">
+<meta property="og:title" content="Python实现BP网络并进行语音识别（三）">
+<meta property="og:url" content="https://ltengy.github.io/2019/06/09/Python实现BP网络并进行语音识别（三）/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="目前貌似还没有桌面github的教程，我把我的经验拿出来和大家分享">
+<meta property="og:description" content="前言在深度学习领域，一份好的数据决定了成功的一半。为了得到优质的声音样本，我特意选取了三位相声大师的单口相声，音频样本简单纯粹，每一位都选取了十分钟以上的音频信息。将音频信息安装停顿切成一个个不超过10s的小声音片段，然后对每一段音频进行MFCC特征提取，获得数百个带标签的音频样本。">
 <meta property="og:locale" content="zh-Fans">
-<meta property="og:image" content="https://ltengy.github.io/images/signup-1.png">
-<meta property="og:image" content="https://ltengy.github.io/images/signup-2.png">
-<meta property="og:image" content="https://ltengy.github.io/images/signup-3.png">
-<meta property="og:updated_time" content="2018-08-06T01:08:59.540Z">
+<meta property="og:image" content="https://ltengy.github.io/images/BPVoice/2019-07-10_102153.jpg">
+<meta property="og:image" content="https://ltengy.github.io/images/BPVoice/2019-07-10_102404.jpg">
+<meta property="og:image" content="https://ltengy.github.io/images/BPVoice/2019-07-10_102435.jpg">
+<meta property="og:updated_time" content="2019-07-10T02:37:21.004Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何在windows使用github创建自己的博客">
-<meta name="twitter:description" content="目前貌似还没有桌面github的教程，我把我的经验拿出来和大家分享">
-<meta name="twitter:image" content="https://ltengy.github.io/images/signup-1.png">
+<meta name="twitter:title" content="Python实现BP网络并进行语音识别（三）">
+<meta name="twitter:description" content="前言在深度学习领域，一份好的数据决定了成功的一半。为了得到优质的声音样本，我特意选取了三位相声大师的单口相声，音频样本简单纯粹，每一位都选取了十分钟以上的音频信息。将音频信息安装停顿切成一个个不超过10s的小声音片段，然后对每一段音频进行MFCC特征提取，获得数百个带标签的音频样本。">
+<meta name="twitter:image" content="https://ltengy.github.io/images/BPVoice/2019-07-10_102153.jpg">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
   
@@ -227,11 +227,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-如何使用github创建自己的博客" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Python实现BP网络并进行语音识别（三）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/06/01/如何使用github创建自己的博客/" class="article-date">
-      <time datetime="2018-06-01T04:18:14.000Z" itemprop="datePublished">2018-06-01</time>
+      <a href="/2019/06/09/Python实现BP网络并进行语音识别（三）/" class="article-date">
+      <time datetime="2019-06-09T12:45:40.000Z" itemprop="datePublished">2019-06-09</time>
 </a>
     </div>
   
@@ -244,7 +244,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      如何在windows使用github创建自己的博客
+      Python实现BP网络并进行语音识别（三）
     </h1>
   
 
@@ -255,7 +255,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/githubdesk/">githubdesk</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BP/">BP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/语音识别/">语音识别</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -268,41 +268,12 @@
 			
 		
 		
-		<p>目前貌似还没有桌面github的教程，我把我的经验拿出来和大家分享<br><a id="more"></a></p>
-<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><ul>
-<li>github账号</li>
-<li>githubdesk </li>
-<li>hexo</li>
-</ul>
-<hr>
-<h1 id="github账号"><a href="#github账号" class="headerlink" title=" github账号"></a> github账号</h1><ol>
-<li>去<a href="https://github.com/&quot;Title&quot;" target="_blank" rel="noopener">github</a>注册账号<br> <img src="/images/signup-1.png" alt=""><br>直接点击signup</li>
-</ol>
-<ol>
-<li><p>在接下来的页面中创建用户名，填写 email 和设定密码，点击「Create an account」按钮创建账户</p>
-<p> <img src="/images/signup-2.png" alt=""></p>
-</li>
-</ol>
-<ol>
-<li>选择免费版本<br> <img src="/images/signup-3.png" alt=""> </li>
-</ol>
-<h1 id="githubdesk创建车库项目"><a href="#githubdesk创建车库项目" class="headerlink" title="githubdesk创建车库项目"></a>githubdesk创建车库项目</h1><ol>
-<li><a href="https://desktop.github.com/" target="_blank" rel="noopener">githubdesk</a>下载适合自己版本的，安装打开，登录账号</li>
-<li><p>点击左上角File—&gt;creat a new repository</p>
-<p>名字填注册名字，本地地址选择桌面</p>
-</li>
-<li>选择自己的车库，添加概要和描述，以master身份确认，最后点击上传<br>这个时候应该可以从浏览器里登陆<a href="https://改成自己的名字.github.io/看到一个空白界面，此时第二步也成功了" target="_blank" rel="noopener">https://改成自己的名字.github.io/看到一个空白界面，此时第二步也成功了</a></li>
-</ol>
-<h1 id="hexo安装与使用"><a href="#hexo安装与使用" class="headerlink" title="hexo安装与使用"></a>hexo安装与使用</h1><ol>
-<li>安装的话直接看<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">hexo</a></li>
-<li><p>安装成功后开始菜单里打开Node.js command prompt，进入刚刚创建的文件夹，运行cd命令和dir命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> desktop </span><br><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> bolg</span><br><span class="line">hexo g </span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>这个时候浏览器输入<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> 可以看到一个网站博客</p>
-</li>
-<li><p>在blog里面找到文件夹public,把里面的东西都复制到车库里，然后安装之前的步骤上传就可以了。不过网速会很慢</p>
-</li>
-</ol>
+		<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在深度学习领域，一份好的数据决定了成功的一半。为了得到优质的声音样本，我特意选取了三位相声大师的单口相声，音频样本简单纯粹，每一位都选取了十分钟以上的音频信息。将音频信息安装停顿切成一个个不超过10s的小声音片段，然后对每一段音频进行MFCC特征提取，获得数百个带标签的音频样本。<br><a id="more"></a></p>
+<h1 id="MFCC简介"><a href="#MFCC简介" class="headerlink" title="MFCC简介"></a>MFCC简介</h1><p>MFCCs（Mel Frequency Cepstral Coefficents）是一种在自动语音和说话人识别中广泛使用的特征。它是在1980年由Davis和Mermelstein提出。<br>在任意一个Automatic speech recognition 系统中，第一步就是提取特征，把音频信号中具有辨识性的成分提取出来，然后把其他的无关的信息丢弃，例如背景噪声、情绪等等。<br><img src="/images/BPVoice/2019-07-10_102153.jpg" alt=""><br>搞清语音是怎么产生的对于我们理解语音有很大帮助。人通过声道产生声音，声道的构造决定了发出怎样的声音。声道的构造包括舌头，牙齿等。如果我们可以准确的知道这个形状，那么我们就可以对产生的音素进行准确的描述。声道的构造在语音短时功率谱的包络中显示出来。而MFCCs就是一种准确描述这个包络的一种特征。<br>传统方法对一段音频信号进行倒谱分析，提取频谱包络（连接所有共振峰值的包络），但是，对于人类听觉感知的实验表明，人类听觉的感知只聚焦在某些特定的区域，而不是整个频谱包络。<br>而Mel频率分析就是基于人类听觉感知实验的。实验观测发现人耳就像一个滤波器组一样，它只关注某些特定的频率分量（人的听觉对频率是有选择性的）。也就说，它只让某些频率的信号通过，而压根就直接无视它不想感知的某些频率信号。但是这些滤波器在频率坐标轴上却不是统一分布的，在低频区域有很多的滤波器，他们分布比较密集，但在高频区域，滤波器的数目就变得比较少，分布很稀疏。<br><img src="/images/BPVoice/2019-07-10_102404.jpg" alt=""><br>人的听觉系统是一个特殊的非线性系统，它响应不同频率信号的灵敏度是不同的。在语音特征的提取上，人类听觉系统做得非常好，它不仅能提取出语义信息, 而且能提取出说话人的个人特征，这些都是现有的语音识别系统所望尘莫及的。如果在语音识别系统中能模拟人类听觉感知处理特点，就有可能提高语音的识别率。<br>梅尔频率倒谱系数（Mel Frequency Cepstrum Coefficient, MFCC）考虑到了人类的听觉特征，先将线性频谱映射到基于听觉感知的Mel非线性频谱中，然后转换到倒谱上。将普通频率转化到Mel频率的公式是：</p>
+<script type="math/tex; mode=display">mel\left(f\right)=2595\times log_{10}\left(1+\frac{f}{700}\right)</script><p>由下图可以看到，它可以将不统一的频率转化为统一的频率，也就是统一的滤波器组。<br><img src="/images/BPVoice/2019-07-10_102435.jpg" alt=""> </p>
+<p>在Mel频域内，人对音调的感知度为线性关系。举例来说，如果两段语音的Mel频率相差两倍，则人耳听起来两者的音调也相差两倍。<br>我们将频谱通过一组Mel滤波器就得到Mel频谱。公式表述就是：</p>
+<script type="math/tex; mode=display">logX\left[k\right]=log\left(Mel-Spectrum\right)</script><p>这时候我们在$log X[k]$上进行倒谱分析：<br>1）取对数：$logX\left[k\right]=logH\left[k\right]+logE\left[k\right]$<br>2）进行逆变换：$x\left[k\right]=h\left[k\right]+e\left[k\right]$。<br>在Mel频谱上面获得的倒谱系数$h\left[k\right]$就称为Mel频率倒谱系数，简称MFCC。</p>
+<p>参考文献<br>[1] <a href="https://blog.csdn.net/zouxy09/article/details/9156785zouxy09@qq.com" target="_blank" rel="noopener">https://blog.csdn.net/zouxy09/article/details/9156785zouxy09@qq.com</a><br>[2] <a href="https://www.ilovematlab.cn/thread-295269-1-1.html" target="_blank" rel="noopener">https://www.ilovematlab.cn/thread-295269-1-1.html</a><br>[3] <a href="https://blog.csdn.net/watfe/article/details/80284242" target="_blank" rel="noopener">https://blog.csdn.net/watfe/article/details/80284242</a></p>
 
 		
       
@@ -348,13 +319,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/06/01/如何使用github创建自己的博客/">如何在windows使用github创建自己的博客</a></p>
+        <p><span>本文标题:</span><a href="/2019/06/09/Python实现BP网络并进行语音识别（三）/">Python实现BP网络并进行语音识别（三）</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Ltengy 的个人博客">Ltengy</a></p>
-        <p><span>发布时间:</span>2018年06月01日 - 12时18分</p>
-        <p><span>最后更新:</span>2018年08月06日 - 09时08分</p>
+        <p><span>发布时间:</span>2019年06月09日 - 20时45分</p>
+        <p><span>最后更新:</span>2019年07月10日 - 10时37分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/06/01/如何使用github创建自己的博客/" title="如何在windows使用github创建自己的博客">https://ltengy.github.io/2018/06/01/如何使用github创建自己的博客/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://ltengy.github.io/2018/06/01/如何使用github创建自己的博客/　　作者: Ltengy" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/06/09/Python实现BP网络并进行语音识别（三）/" title="Python实现BP网络并进行语音识别（三）">https://ltengy.github.io/2019/06/09/Python实现BP网络并进行语音识别（三）/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://ltengy.github.io/2019/06/09/Python实现BP网络并进行语音识别（三）/　　作者: Ltengy" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -367,15 +338,20 @@
 
 <nav id="article-nav">
   
-    <a href="/2018/06/28/数据库练习/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/06/09/Python实现BP网络并进行语音识别（四）/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          SQL 45道经典练习
+          Python实现BP网络并进行语音识别（四）
         
       </div>
     </a>
   
+  
+    <a href="/2019/06/09/Python实现BP网络并进行语音识别（二）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Python实现BP网络并进行语音识别（二）</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
   
 </nav>
 
@@ -384,7 +360,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#准备工作"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#github账号"><span class="toc-number">2.</span> <span class="toc-text"> github账号</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#githubdesk创建车库项目"><span class="toc-number">3.</span> <span class="toc-text">githubdesk创建车库项目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#hexo安装与使用"><span class="toc-number">4.</span> <span class="toc-text">hexo安装与使用</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MFCC简介"><span class="toc-number">2.</span> <span class="toc-text">MFCC简介</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -436,13 +412,15 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/06/28/数据库练习/" title="上一篇: SQL 45道经典练习">
+            <a href="/2019/06/09/Python实现BP网络并进行语音识别（四）/" title="上一篇: Python实现BP网络并进行语音识别（四）">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2019/06/09/Python实现BP网络并进行语音识别（二）/" title="下一篇: Python实现BP网络并进行语音识别（二）">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
     <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/06/09/Python实现BP网络并进行语音识别（一）/">Python实现BP网络并进行语音识别（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/09/Python实现BP网络并进行语音识别（四）/">Python实现BP网络并进行语音识别（四）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/09/Python实现BP网络并进行语音识别（三）/">Python实现BP网络并进行语音识别（三）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/09/Python实现BP网络并进行语音识别（二）/">Python实现BP网络并进行语音识别（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/28/利用python进行轮廓角点探测/">利用python进行图像角点探测</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/27/mysql-django-配置问题/">mysql django 配置问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/13/利用python进行图像旋转矫正/">利用python进行纸质文档识别（一）图像旋转矫正</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/24/Git无法推送代码至仓库/">Git无法推送代码至仓库</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/29/stm32GPIO无法工作原因/">stm32GPIO无法工作原因</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/13/python打包的艰难之旅/">python打包的艰难之旅</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/11/python实现划词翻译/">python实现划词翻译</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/关于自定义标签库找不到路径的解决办法/">关于自定义标签库找不到路径的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/06/基于spfk主题的自动摘要/">基于spfk主题的自动摘要</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/04/验证码demo/">java实现验证码demo</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/04/ccs811调试指南/">ccs811调试指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/28/数据库练习/">SQL 45道经典练习</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/01/如何使用github创建自己的博客/">如何在windows使用github创建自己的博客</a></li></ul>
